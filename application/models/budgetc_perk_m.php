@@ -7,7 +7,7 @@ class Budgetc_perk_m extends CI_Model {
 	
 	public function getKodePerk(){
 		
-		$sql = "select kode_perk from perkiraan"
+		$sql = "select kode_perk from perkiraan";
 		$query=$this->db->query($sql);
 		return $query->result();
 	
@@ -20,9 +20,9 @@ class Budgetc_perk_m extends CI_Model {
 		return $jml;
 		// returning rows, not row
 	}
-	public function insertKodePerk($tahun,$kodPerk){
+	public function insertKodePerk($data){
 		$this->db->trans_begin();
-		$model = $this->db->insert('perkiraan', $data);
+		$model = $this->db->insert('budget_perkiraan', $data);
 		if ($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
 			return false;

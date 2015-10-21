@@ -129,8 +129,7 @@
     // MENU OPEN
     $(".menu_root").removeClass('start active open');
     $("#menu_root_<?php echo $menu_parent; ?>").addClass('start active open');
-    // END MENU OPEN
-    
+    // END MENU OPEN   
     
     //Ready Doc
     btnStart();
@@ -143,7 +142,7 @@
 		resetForm();
 	});
 	
-	function ajaxSubmitAdvance(){
+	function ajaxSubmit(){
 		ajaxModal();
 		$.ajax({
 			type:"POST",
@@ -161,13 +160,13 @@
 		event.preventDefault();
 	}
 	
-    $('#id_formAdvance').submit(function (event) {
-		dataString = $("#id_formAdvance").serialize();
+    $('#id_formBudgetc_perk').submit(function (event) {
+		dataString = $("#id_formBudgetc_perk").serialize();
         var aksiBtn       = $('#idTmpAksiBtn').val();
         if(aksiBtn == '1'){
         	var r = confirm('Anda yakin menyimpan data ini?');
 			 if (r== true){
-				ajaxSubmitAdvance();
+				ajaxSubmit();
 			 }else{//if(r)
 				return false;
 			}

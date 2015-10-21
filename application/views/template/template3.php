@@ -60,6 +60,10 @@
 .nomor {
     text-align: right;
 }
+.kanan {
+    text-align: right;
+}
+
 </style>
 </head>
 <!-- END HEAD -->

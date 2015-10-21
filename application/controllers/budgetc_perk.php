@@ -55,11 +55,22 @@ class Budgetc_perk extends CI_Controller
         if($cek_tahun == 0){
         	$get_kodeperk = $this->budgetc_perk_m->getKodePerk();
         	foreach ($get_kodeperk as $kodeperk){
+        		$kodeperk = $kodeperk->kode_perk;
         		$data = array(
         				'tahun'		        =>$tahun,
-        				'kode_perk'		    =>$kodeperk[0]->kode_perk,
+        				'kode_perk'		    =>$kodeperk,
         				'jan'				=>0,
-        				'feb'				=>
+        				'feb'				=>0,
+        				'mar'				=>0,
+        				'apr'				=>0,
+        				'mei'				=>0,
+        				'jun'				=>0,
+        				'jul'				=>0,
+        				'agu'				=>0,
+        				'sep'				=>0,
+        				'okt'				=>0,
+        				'nov'				=>0,
+        				'des'				=>0
         		);
         		$model = $this->budgetc_perk_m->insertKodePerk($data);
         	}	
@@ -72,6 +83,12 @@ class Budgetc_perk extends CI_Controller
         	}
         	$this->output->set_output(json_encode($array));
         }else{
+        	$array = array(
+        			'act'	=>1,
+        			'tipePesan'=>'error',
+        			'pesan' =>'Data gagal disimpan.<br>Tahun sudah pernah diinisialisasi.'
+        	);
+        	$this->output->set_output(json_encode($array));
         	
         }
         
