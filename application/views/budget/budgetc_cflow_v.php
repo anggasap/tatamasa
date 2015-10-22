@@ -1,3 +1,4 @@
+
 <!-- BEGIN PAGE BREADCRUMB -->
 <!--
 
@@ -12,7 +13,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Inisialisasi Budget Perkiraan</span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Inisialisasi Budget Cash Flow</span>
                 </div>
                 <div class="actions">
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
@@ -27,7 +28,7 @@
                     </span>
                 </div>
                 <form role="form" method="post" 
-                      action="<?php echo base_url('budgetc_perk/home'); ?>" id="id_formBudgetc_perk">
+                      action="<?php echo base_url('budgetc_cflow/home'); ?>" id="id_formBudgetc_cflow">
                     <div class="row">
                         <div class="form-body">
                             <div class="col-md-4">
@@ -147,7 +148,7 @@
 		$.ajax({
 			type:"POST",
 			dataType: "json",
-			url:"<?php echo base_url(); ?>budgetc_perk/simpan",
+			url:"<?php echo base_url(); ?>budgetc_cflow/simpan",
 			data:dataString,
 	
 			success:function (data) {
@@ -160,11 +161,11 @@
 		event.preventDefault();
 	}
 	
-    $('#id_formBudgetc_perk').submit(function (event) {
-		dataString = $("#id_formBudgetc_perk").serialize();
+    $('#id_formBudgetc_cflow').submit(function (event) {
+		dataString = $("#id_formBudgetc_cflow").serialize();
         var aksiBtn       = $('#idTmpAksiBtn').val();
         if(aksiBtn == '1'){
-        	var r = confirm('Anda yakin menyimpan data ini?');
+        	var r = confirm('Anda yakin menginisialisasi tahun tsb.?');
 			 if (r== true){
 				ajaxSubmit();
 			 }else{//if(r)

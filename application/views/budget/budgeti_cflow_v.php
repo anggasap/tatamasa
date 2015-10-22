@@ -12,7 +12,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Data Budget Perkiraan Tahun <?php echo $tahun; ?></span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Data Budget Cash Flow Tahun <?php echo $tahun; ?></span>
                 </div>
                 <div class="actions">
 					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
@@ -50,10 +50,10 @@
                             	<thead>
                                 	<tr>
                                     	<th>
-                                        	Kode Perk
+                                        	Kode CFlow
                                         </th>
                                         <th>
-                                        	Nama Perk
+                                        	Nama Akun CFlow
                                         </th>
                                         <th>
                                         	Jan
@@ -98,14 +98,14 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                foreach($allBudgetPerk as $row){
+                                foreach($allBudgetCflow as $row){
                                 ?>
                                 <tr>
                                     	<td>
-                                        	<?php echo $row->kode_perk; ?>
+                                        	<?php echo $row->kode_cflow; ?>
                                         </td>
                                         <td>
-                                        	<?php echo $row->nama_perk; ?>
+                                        	<?php echo $row->nama_cflow; ?>
                                         </td>
                                         <td class="kanan">
                                         	<?php echo number_format($row->jan,2); ?>
@@ -230,7 +230,6 @@
     var TableEditable = function () {
 
         var handleTable = function () {
-
             function restoreRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
@@ -244,7 +243,6 @@
 
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
-                
                 var jqTds = $('>td', nRow);
                 
                 jqTds[0].innerHTML = '<input readonly type="text" class="form-control input-small input-sm" value="' + aData[0] + '">';
@@ -267,11 +265,9 @@
                 	bulan.push(nominal);
                 	
                 } */
-                //var dataArray = new Array(12);//<== NEVER do this again, btw
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                var kode_perk = jqInputs[0].value.trim();
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                //oTable.fnUpdate(number_format(jqInputs[1].value,2), nRow, 1, false);
+                var kode_cflow = jqInputs[0].value.trim();
+                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);// nama cflow
                 oTable.fnUpdate(number_format(jqInputs[2].value,2), nRow, 2, false);
                 var jan = jqInputs[2].value;
                 oTable.fnUpdate(number_format(jqInputs[3].value,2), nRow, 3, false);
@@ -302,8 +298,8 @@
                 $.ajax({
         			type:"POST",
         			dataType: "json",
-        			url:"<?php echo base_url(); ?>budgeti_perk/ubah",
-        			data:{kode_perk:kode_perk,
+        			url:"<?php echo base_url(); ?>budgeti_cflow/ubah",
+        			data:{kode_cflow:kode_cflow,
 						  jan : jan, feb :feb, mar:mar, apr:apr, mei:mei, jun:jun, jul:jul, agt:agt, sep:sep, okt:okt, nov:nov, des:des
             			},
         			success:function (data) {
@@ -383,7 +379,7 @@
 
             table.on('click', '.edit', function (e) {
                 e.preventDefault();
-
+                
                 /* Get the row as a parent of the link that was clicked on */
                 var nRow = $(this).parents('tr')[0];
                 if (nEditing !== null && nEditing != nRow) {
@@ -400,6 +396,7 @@
                     editRow(oTable, nRow);
                     nEditing = nRow;
                 }
+                
             });
             table.on('focus', '.nomor', function (e) {
             	if ($(this).val() == '0.00') {
@@ -425,8 +422,7 @@
                         val =val.replace(/\.+$/,"");
                 }
                 $(this).val(val);
-            }); 
-                    
+            });   
         }
 
         return {

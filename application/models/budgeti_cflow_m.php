@@ -3,29 +3,29 @@
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 
-class Budgeti_perk_m extends CI_Model {
+class Budgeti_cflow_m extends CI_Model {
 	public function getTahun() {
 		$rows 		=	array(); //will hold all results
-		$sql		=	"select distinct(tahun) as tahun from budget_perkiraan order by tahun asc ";
+		$sql		=	"select distinct(tahun) as tahun from budget_cflow order by tahun asc ";
 		$query		=	$this->db->query($sql);
 		foreach($query->result_array() as $row){
 			$rows[] = $row; //add the fetched result to the result array;
 		}
 		return $rows; // returning rows, not row
 	}
-	public function getBudgetPerk($tahun)
+	public function getBudgetCflow($tahun)
 	{
-		$sql="SELECT b.*,p.nama_perk from budget_perkiraan b left join perkiraan p on b.kode_perk = p.kode_perk where b.tahun = '$tahun'";
+		$sql="SELECT b.*,m.nama_cflow  from budget_cflow b left join master_cashflow m on b.kode_cflow = m.kode_cflow where tahun = '$tahun'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
 	
 	
 	
-	function update($data,$kode_perk){
+	function update($data,$kode_cflow){
 		$this->db->trans_begin();
-		$query1 = $this->db->where('kode_perk', $kode_perk);
-		$query2 = $this->db->update('budget_perkiraan', $data);
+		$query1 = $this->db->where('kode_cflow', $kode_cflow);
+		$query2 = $this->db->update('budget_cflow', $data);
 		if ($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
 			return false;

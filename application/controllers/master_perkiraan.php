@@ -206,6 +206,15 @@ class Master_perkiraan extends CI_Controller
     function updatekodeinduk(){
     	$this->master_perkiraan_m->updatekodeinduk();
     }
+    function cetak(){
+    	if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+    		$data['perkiraan'] = $this->master_perkiraan_m->getAllPerkiraan();
+    		$this->load->view('cetak/cetak_perkiraan',$data);
+    	}
+    
+    }
 }
 
 /* End of file sec_user.php */

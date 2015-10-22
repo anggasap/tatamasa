@@ -256,13 +256,13 @@ class Master_advance extends CI_Controller
     	}
     	$this->output->set_output(json_encode($array));
     }
-    function cetak($idAdv)
+	function cetak($idAdv)
     {
     	if($this->auth->is_logged_in() == false){
     		redirect('main/index');
     	}else{
     		//$id = $this->uri->segment(3);
-    		$data ['advance'] = $this->master_advance_m->getDescAdv($idAdv);
+    		$data['advance'] = $this->master_advance_m->getDescAdv($idAdv);
     		$this->load->view('cetak/cetak_advance',$data);
     	}
     }

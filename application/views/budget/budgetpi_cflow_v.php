@@ -12,7 +12,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Inisialisasi Budget Perkiraan</span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Pilih Tahun Budget Cash Flow</span>
                 </div>
                 <div class="actions">
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
@@ -27,15 +27,21 @@
                     </span>
                 </div>
                 <form role="form" method="post" 
-                      action="<?php echo base_url('budgetc_perk/home'); ?>" id="id_formBudgetc_perk">
+                      action="<?php echo base_url('budgeti_cflow/home'); ?>" id="id_formBudgetc_cflow">
                     <div class="row">
                         <div class="form-body">
                             <div class="col-md-4">
 								
                                 <div class="form-group">
                                     <label>Tahun budget</label>
-									<input id="id_tahun" required="required" class="form-control"
-                                                   type="text" name="tahun" placeholder="yyyy"/>
+									<?php
+										$data = array();
+										$data[''] ='';
+										foreach($tahun as $row) : 
+												$data[$row['tahun']] = $row['tahun'];
+										endforeach; 
+										echo form_dropdown('tahun', $data,'','id="id_tahun" class="form-control select2me"');
+									?>                                                   
                                 </div>
                                 
                             </div>
@@ -57,7 +63,7 @@
                         <div class="col-md-12">
                             <div class="form-actions">
                                 <button name="btnSimpan" class="btn blue" id="id_btnSimpan">
-                                    <!--<i class="fa fa-check"></i>--> Inisialisasi
+                                    <!--<i class="fa fa-check"></i>--> Entri
                                 </button>
                                 
                                 <button id="id_btnBatal" type="button" class="btn default">Batal</button>
@@ -142,36 +148,9 @@
 		resetForm();
 	});
 	
-	function ajaxSubmit(){
-		ajaxModal();
-		$.ajax({
-			type:"POST",
-			dataType: "json",
-			url:"<?php echo base_url(); ?>budgetc_perk/simpan",
-			data:dataString,
 	
-			success:function (data) {
-				$('#id_Reload').trigger('click');
-				$('#id_btnBatal').trigger('click');
-				UIToastr.init(data.tipePesan,data.pesan);
-			}
 	
-		});
-		event.preventDefault();
-	}
-	
-    $('#id_formBudgetc_perk').submit(function (event) {
-		dataString = $("#id_formBudgetc_perk").serialize();
-        var aksiBtn       = $('#idTmpAksiBtn').val();
-        if(aksiBtn == '1'){
-        	var r = confirm('Anda yakin menyimpan data ini?');
-			 if (r== true){
-				ajaxSubmit();
-			 }else{//if(r)
-				return false;
-			}
-        }
-    }); 
+     
     
 </script>
 
