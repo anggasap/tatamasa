@@ -13,25 +13,13 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Data Master Perkiraan </span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Data Master Cash Flow </span>
                 </div>
                 <div class="actions">
-					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
-					<i class="fa fa-print"></i> Cetak </a>
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
 					</a>
 				</div>
                 
-                <!-- <div class="actions">
-                	<a href="javascript:;" class="btn blue btn-sm">
-						<i class="fa fa-print"></i> Cetak  </a>
-                </div> -->
-                <!-- <div class="tools">
-                    <a href="javascript:;" class="collapse">
-                    </a>
-                    <a href="javascript:;" class="fullscreen">
-                    </a>
-                </div> -->
             </div>
             <div class="portlet-body">
                 <div>
@@ -40,17 +28,17 @@
                     </span>
                 </div>
                 <form role="form" method="post" 
-                      action="<?php echo base_url('master_perkiraan/home'); ?>" id="id_formPerkiraan">
+                      action="<?php echo base_url('master_cflow/home'); ?>" id="id_formCflow">
                     <div class="row">
                         <div class="form-body">
                             <div class="col-md-4">
 								<div class="form-group">
-                                    <label>Sub perkiraan </label>
+                                    <label>Sub cflow </label>
                                     <div class="input-group">
                                         <div class="input-icon">
                                             <i class="fa fa-list fa-fw"></i>
-                                            <input id="id_kodePerkRoot" required="required" class="form-control"
-                                                   type="text" name="kodePerkRoot" readonly/>
+                                            <input id="id_kodeCflowRoot" required="required" class="form-control"
+                                                   type="text" name="kodeCflowRoot" readonly/>
                                         </div>
                                     	<span class="input-group-btn">
                                         	<a href="#" class="btn btn-success" data-target="#idDivTabelPerk"
@@ -62,31 +50,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Kode Perk Alternatif</label>
+                                    <label>Kode Cash Flow Alternatif</label>
                                             <input id="id_kodeAltRoot" required="required" class="form-control"
                                                    type="text" name="kodeAltRoot" readonly/>
                                 </div>
                                 <div class="form-group">
-                                	<label>Nama Perk</label>
-									<input id="id_namaPerkRoot" required="required" class="form-control"
-                                                   type="text" name="namaPerkRoot" readonly/>
+                                	<label>Nama Cash flow</label>
+									<input id="id_namaCflowRoot" required="required" class="form-control"
+                                                   type="text" name="namaCflowRoot" readonly/>
                                 </div>
                                 <div class="form-group">
                                 	<div class="row">
                                 		<div class="col-md-4">
                                 			<label>Level Perk</label>
-                                			<input id="id_lvlPerkRoot" required="required" class="form-control"
-                                                   type="text" name="lvlPerkRoot" readonly/>
+                                			<input id="id_lvlCflowRoot" required="required" class="form-control"
+                                                   type="text" name="lvlCflowRoot" readonly/>
                                 		</div>
                                 		<div class="col-md-4">
-                                			<label>Type Perk </label>
-                                			<input id="id_typePerkRoot" required="required" class="form-control"
-                                                   type="text" name="typePerkRoot" readonly/>
+                                			<label>Type Cflow </label>
+                                			<input id="id_typeCflowRoot" required="required" class="form-control"
+                                                   type="text" name="typeCflowRoot" readonly/>
                                 		</div>
                                 		<div class="col-md-4">
-                                			<label>DK Perk </label>
+                                			<!-- <label>DK Perk </label>
                                 			<input id="id_dkPerkRoot" required="required" class="form-control"
-                                                   type="text" name="typePerkRoot" readonly/>
+                                                   type="text" name="typePerkRoot" readonly/> -->
                                 		</div>
                                 	</div>
                                 </div>
@@ -95,12 +83,12 @@
                             <!--end <div class="col-md-6"> 1 -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Kode perk</label>
+                                    <label>Kode Cflow</label>
                                     <div class="input-group">
                                         <div class="input-icon">
                                             <i class="fa fa-list fa-fw"></i>
-                                            <input id="id_kodePerk" required="required" class="form-control"
-                                                   type="text" name="kodePerk"/>
+                                            <input id="id_kodeCflow" required="required" class="form-control"
+                                                   type="text" name="kodeCflow"/>
                                         </div>
                                     	<span class="input-group-btn">
                                         	<a href="#" class="btn btn-success" data-target="#idDivTabelPerk"
@@ -113,32 +101,32 @@
                                             
                                 </div>
                                 <div class="form-group">
-                                    <label>Kode Perk Alternatif</label>
+                                    <label>Kode Cflow Alternatif</label>
                                             <input id="id_kodeAlt" required="required" class="form-control"
                                                    type="text" name="kodeAlt" placeholder=""/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama Perk</label>
-                                            <input id="id_namaPerk" required="required" class="form-control"
-                                                   type="text" name="namaPerk" placeholder=""/>
+                                    <label>Nama Cflow</label>
+                                            <input id="id_namaCflow" required="required" class="form-control"
+                                                   type="text" name="namaCflow" placeholder=""/>
                                 </div>
                                 
                                 <div class="form-group">
                                 	<div class="row">
                                 		<div class="col-md-4">
-                                			<label>Level Perk</label>
-                                			<input id="id_lvlPerk" required="required" class="form-control"
-                                                   type="text" name="lvlPerk" readonly/>
+                                			<label>Level Cflow</label>
+                                			<input id="id_lvlCflow" required="required" class="form-control"
+                                                   type="text" name="lvlCflow" readonly/>
                                 		</div>
                                 		<div class="col-md-4">
-                                			<label>Type Perk</label>
-                                			<input id="id_typePerk" required="required" class="form-control"
-                                                   type="text" name="typePerk" value="D" readonly/>
+                                			<label>Type Cflow</label>
+                                			<input id="id_typeCflow" required="required" class="form-control"
+                                                   type="text" name="typeCflow" value="D" readonly/>
                                 		</div>
                                 		<div class="col-md-4">
-                                			<label>DK Perk</label>
+                                			<!-- <label>DK Perk</label>
                                 			<input id="id_dkPerk" required="required" class="form-control"
-                                                   type="text" name="dkPerk" readonly/>
+                                                   type="text" name="dkPerk" readonly/> -->
                                 		</div>
                                 	</div>
                                 </div>
@@ -203,7 +191,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-				<h4 class="modal-title">Data Perkiraan</h4>
+				<h4 class="modal-title">Data Cash Flow</h4>
 			</div>
 			<div class="modal-body">
                     <div class="scroller" style="height:400px; ">
@@ -218,12 +206,12 @@
                                     <table class="table table-striped table-bordered table-hover text_kanan" id="idTabelPerk">
                                         <thead>
                                     		<tr>
-                                        		<th width='10%' align='left'>Kd Perk</th>
-                                        		<th width='10%' align='left'>Kd Alt</th>
+                                        		<th width='15%' align='left'>Kd Cflow</th>
+                                        		<th width='15%' align='left'>Kd Alt</th>
                                         		<th width='50%' align='left'>Nama Perk</th>
                                         		<th width='10%' align='center'>Level</th>
                                         		<th width='10%' align='center'>Type</th>
-                                        		<th width='10%' align='center'>DK</th>
+
                                     		</tr>
                                     	</thead>
                                     	<tbody>
@@ -303,14 +291,13 @@
             //var table = $('#id_TabelPerk');
             // begin first table
             var table = $('#idTabelPerk').dataTable({
-                "ajax": "<?php  echo base_url("/master_perkiraan/getAllPerkiraan"); ?>",
+                "ajax": "<?php  echo base_url("/master_cflow/getAllCflow"); ?>",
                 "columns": [
-                    { "data": "kode_perk" },
+                    { "data": "kode_cflow" },
                     { "data": "kode_alt" },
-                    { "data": "nama_perk" },
+                    { "data": "nama_cflow" },
                     { "data": "level" },
-                    { "data": "type" },
-                    { "data": "dk" }
+                    { "data": "type" }
                 ],
                 // Internationalisation. For more info refer to http://datatables.net/manual/i18n
                 "language": {
@@ -380,44 +367,39 @@
             table.on('click', 'tbody tr', function () {
             	var fbtnModal = $('#idTmpModalBtn').val();
             	if(fbtnModal==1){
-            		var kodePerkRoot = $(this).find("td").eq(0).html();
-                    $('#id_kodePerkRoot').val(kodePerkRoot);
+            		var kodeCflowRoot = $(this).find("td").eq(0).html();
+                    $('#id_kodeCflowRoot').val(kodeCflowRoot);
                     var kodeAltRoot = $(this).find("td").eq(1).html();
                     $('#id_kodeAltRoot').val(kodeAltRoot);
-                    var namaPerk = $(this).find("td").eq(2).html();
-                    $('#id_namaPerkRoot').val(namaPerk);
-                    var lvlPerkRoot = $(this).find("td").eq(3).html();
-                    $('#id_lvlPerkRoot').val(lvlPerkRoot);
-                    var typePerk = $(this).find("td").eq(4).html();
-                    $('#id_typePerkRoot').val(typePerk);
-                    var dkPerk = $(this).find("td").eq(5).html();
-                    $('#id_dkPerkRoot').val(dkPerk);
-                    $('#id_dkPerk').val(dkPerk);
-
-                    var lvlPerk = parseInt(lvlPerkRoot) +1;
-                    $('#id_lvlPerk').val(lvlPerk);
+                    var namaCflow = $(this).find("td").eq(2).html();
+                    $('#id_namaCflowRoot').val(namaCflow);
+                    var lvlCflowRoot = $(this).find("td").eq(3).html();
+                    $('#id_lvlCflowRoot').val(lvlCflowRoot);
+                    var typeCflow = $(this).find("td").eq(4).html();
+                    $('#id_typeCflowRoot').val(typeCflow);
                     
-    				getLastKdPerk(kodePerkRoot,lvlPerkRoot);
+                    var lvlCflow = parseInt(lvlCflowRoot) +1;
+                    $('#id_lvlCflow').val(lvlCflow);
+                    
+    				getLastKdCflow(kodeCflowRoot,lvlCflowRoot);
     				
                     $( "#btnCloseModal" ).trigger( "click" );
-                    $("#id_kodePerk").focus();
-                    $("#id_btnModal2").attr("disabled",true);
+                    //$("#id_kodeCflow").focus();
+                    //$("#id_btnModal2").attr("disabled",true);
                 }else{
-                	var kodePerk = $(this).find("td").eq(0).html();
-                    $('#id_kodePerk').val(kodePerk);
+                	var kodeCflow = $(this).find("td").eq(0).html();
+                    $('#id_kodeCflow').val(kodeCflow);
                     var kodeAlt = $(this).find("td").eq(1).html();
                     $('#id_kodeAlt').val(kodeAlt);
-                    var namaPerk = $(this).find("td").eq(2).html();
-                    $('#id_namaPerk').val(namaPerk);
-                    var lvlPerk = $(this).find("td").eq(3).html();
-                    $('#id_lvlPerk').val(lvlPerk);
-                    var typePerk = $(this).find("td").eq(4).html();
-                    $('#id_typePerk').val(typePerk);
-                    var dkPerk = $(this).find("td").eq(5).html();
-                    $('#id_dkPerk').val(dkPerk);
+                    var namaCflow = $(this).find("td").eq(2).html();
+                    $('#id_namaCflow').val(namaCflow);
+                    var lvlCflow = $(this).find("td").eq(3).html();
+                    $('#id_lvlCflow').val(lvlCflow);
+                    var typeCflow = $(this).find("td").eq(4).html();
+                    $('#id_typeCflow').val(typeCflow);
                     
                 	$("#id_btnModal").attr("disabled",true);
-                	$('#id_kodePerk').attr("readonly",true);
+                	$('#id_kodeCflow').attr("readonly",true);
 
                 	$('#id_btnSimpan').attr("disabled",true);
                 	$('#id_btnUbah').attr("disabled",false);
@@ -446,6 +428,9 @@
     readyToStart();
     //
 	/* $("#id_namaKyw").focus(); */
+    /*$('#idDivTabelPerk').on('shown.bs.modal', function (e) {
+        $("#id_kodeCflow").focus();
+    });*/
     	
 	$( "#id_btnSimpan" ).click(function() {
 		$('#idTmpAksiBtn').val('1');
@@ -461,15 +446,15 @@
 		btnStart();
 		resetForm();
 		readyToStart();
-		$('#id_typePerk').val('D');
-		$( "#id_kodePerk" ).attr("readonly",false);
+		$('#id_typeCflow').val('D');
+		$( "#id_kodeCflow" ).attr("readonly",false);
 		$("#id_btnModal").attr("disabled",false);
 		$("#id_btnModal2").attr("disabled",false);
 	});
-	$( "#id_kodePerkRoot" ).focusout(function() {
-		var kodePerkRoot	= $(this).val();
-		var lvlPerkRoot	= $('#id_lvlPerkRoot').val();
-		getLastKdPerk(kodePerkRoot,lvlPerkRoot);
+	$( "#id_kodeCflowRoot" ).focusout(function() {
+		var kodeCflowRoot	= $(this).val();
+		var lvlCflowRoot	= $('#id_lvlCflowRoot').val();
+		getLastKdCflow(kodeCflowRoot,lvlCflowRoot);
 	});
 	$('#id_btnModal').click(function(){
 		$('#idTmpModalBtn').val('1');
@@ -477,15 +462,15 @@
 	$('#id_btnModal2').click(function(){
 		$('#idTmpModalBtn').val('2');
 	});
-	function getLastKdPerk(kodePerkRoot,lvlPerkRoot){
+	function getLastKdCflow(kodeCflowRoot,lvlCflowRoot){
 		ajaxModal();
-		if (kodePerkRoot != '') {
-			$.post("<?php echo site_url('/master_perkiraan/getLastKdPerk'); ?>",
+		if (kodeCflowRoot != '') {
+			$.post("<?php echo site_url('/master_cflow/getLastKdCflow'); ?>",
 			{
-				'kodePerkRoot': kodePerkRoot,
-				'lvlPerkRoot': lvlPerkRoot
+				'kodeCflowRoot': kodeCflowRoot,
+				'lvlCflowRoot': lvlCflowRoot
 			},function (data) {
-					$('#id_kodePerk').val(data.kdPerk);
+					$('#id_kodeCflow').val(data.kdCflow);
 			}, "json");
 		}//if kd<>''
 	}
@@ -494,7 +479,7 @@
 		$.ajax({
 			type:"POST",
 			dataType: "json",
-			url:"<?php echo base_url(); ?>master_perkiraan/simpan",
+			url:"<?php echo base_url(); ?>master_cflow/simpan",
 			data:dataString,
 	
 			success:function (data) {
@@ -526,13 +511,13 @@
 	}
 	function ajaxHapus(){
 		ajaxModal();
-		var idPerk	= $('#id_kodePerk').val();
-		idPerk		= idPerk.trim();
+		var idCflow	= $('#id_kodeCflow').val();
+		idCflow		= idCflow.trim();
 		$.ajax({
 			type:"POST",
 			dataType: "json",
 			url:"<?php echo base_url(); ?>master_perkiraan/hapus",
-			data:{idPerk : idPerk},
+			data:{idCflow : idCflow},
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
@@ -542,8 +527,8 @@
 		});
 		event.preventDefault();
 	}
-    $('#id_formPerkiraan').submit(function (event) {
-		dataString = $("#id_formPerkiraan").serialize();
+    $('#id_formCflow').submit(function (event) {
+		dataString = $("#id_formCflow").serialize();
         var aksiBtn       = $('#idTmpAksiBtn').val();
         if(aksiBtn == '1'){
         	var r = confirm('Anda yakin menyimpan data ini?');
@@ -568,9 +553,6 @@
 			}
         }
     }); 
-    function cetak(){
-			window.open("<?php echo base_url('master_perkiraan/cetak'); ?>", '_blank');	
-	}
     
 </script>
 

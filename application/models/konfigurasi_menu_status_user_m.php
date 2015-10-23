@@ -34,10 +34,13 @@ class Konfigurasi_menu_status_user_m extends CI_Model {
 		}// end foreach($data_menu as $x=>$x_value){
 	}
 	public function get_menu_group_user_m($kd_group_user) {
-		$this->db->select ( 'menu_id,parent' );
+		/* $this->db->select ( 'menu_id,parent' );
 		$this->db->from('sec_menu');
-		$this->db->like ( 'menu_allowed', $kd_group_user );
-		$query = $this->db->get ();
+		$this->db->where ( 'menu_uri', '#' );
+		$this->db->like ( 'menu_allowed', $kd_group_user ); */
+		$sql = "select menu_id,parent from sec_menu where menu_allowed like '%$kd_group_user%' and menu_uri <>'#' ";
+		$query=$this->db->query($sql);
+		//$query = $this->db->get ();
 		
 		$rows['data_menu'] = $query->result();
 		return $rows; // returning rows, not row

@@ -22,12 +22,7 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div>
-                	<span id="event_result">
-                    
-                    </span>
-                </div>
-               <div class="row">
+                <div class="row">
                             <div class="col-md-12">
                                 <button id="id_Reload" style="display: none;"></button>
                             </div>
@@ -94,34 +89,385 @@
 				<h4 class="modal-title">Advance Approval</h4>
 			</div>
 			<div class="modal-body">
-			<div class="scroller" style="height:200px;">
+			<div class="scroller" style="height:400px;">
 				<form class="" id="FormApprovalAdv" role="form" method="post" action="">
-                	    	<div class="form-group">
-								<label>Pilihan</label>
-									<div class="input-icon">
-										<i class="fa fa-list fa-fw"></i>
-										<select class="form-control" id="flag" name="flag" required="true">
-											<option value="1">Approve</option>
-											<option value="2">Reject</option>
-											<option value="3">Paid</option>
-										</select>
+                	<div class="row">
+                        <div class="form-body">
+                            <div class="col-md-4">
+								<div class="form-group">
+                                    <label>Id Advance </label>
+                                            <input id="id_idAdvance" required="required" class="form-control" type="text" name="idAdvance" readonly/>
+                                </div>
+                                <div class="form-group">
+                                <input id="id_kywId" required="required" class="form-control" type="hidden" name="kywId" readonly/>
+                                    <label>Nama karyawan(Requester)</label>
+                                            <input id="id_namaKyw" required="required" class="form-control"
+                                                   type="text" name="namaKyw" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Departemen/Bagian</label>
+									<input id="id_deptKyw" required="required" class="form-control"type="text" name="deptKyw" readonly/>
+                                </div>
+                                
+                            </div>
+                            <!--end <div class="col-md-6"> 1 -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Jumlah uang muka</label>
+                                            <input id="id_uangMuka" required="required" class="form-control nomor"
+                                                   type="text" name="uangMuka" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Jatuh Tempo</label>
+                                            <input id="id_tglJT" required="required" class="form-control"
+                                                   type="text" name="tglJT" placeholder="dd-mm-yyyy" readonly/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Dibayarkan ke</label>
+                                            <input id="id_payTo" required="required" class="form-control"
+                                                   type="text" name="payTo" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                            	<div class="form-group">
+                                    <label>Nama pemilik akun bank</label>
+                                            <input id="id_namaPemilikAkunBank" required="required" class="form-control "
+                                                   type="text" name="namaPemilikAkunBank" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label>No akun bank</label>
+                                            <input id="id_noAkunBank" required="required" class="form-control "
+                                                   type="text" name="noAkunBank" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama bank</label>
+                                            <input id="id_namaBank" required="required" class="form-control"
+                                                   type="text" name="namaBank" readonly/>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+                    <!--END ROW 1 -->
+                    <!-- ROW 2 -->
+                    <div class="row">
+                        <div class="form-body">
+                        	<div class="col-md-12">
+                            	<div class="form-group">
+                                    <label>Keterangan</label>
+                                    <textarea rows="2" cols="" name="keterangan"  id="id_keterangan" class="form-control" readonly>
+                                    </textarea>
+                                </div>
+                            </div>	
+                        </div>
+                    </div>    
+                    <!--END ROW 2 -->
+                    <!-- ROW 3 -->
+                    <div class="row">
+                        <div class="form-body">
+                        	<div class="col-md-4">
+                                <div class="form-group">
+									<label>Dokumen Verifikasi</label>
+									<div class="checkbox-list">
+										<label>
+										<input type="checkbox"  value="1"  name="dokPO" id="id_dokPO"> Purchase Order (PO)  </label>
+										<input type="text" name="dokPO_in" id="id_dokPO_in" class="nomor1 hidden ">
+										<label>
+										<input type="checkbox"  value="1" name="dokSP" id="id_dokSP">  Surat Penawaran </label>
+										<input type="text" name="dokSP_in" id="id_dokSP_in" class="nomor1 hidden ">
 									</div>
-								<input type="hidden" id="id" name="id" class="id">
-							</div>
-							<div class="form-group">
-								<label>Keterangan</label>
-									<div class="input-icon">
-										<i class="fa fa-list fa-fw"></i>
-										<textarea rows="2" name="keterangan" id="keterangan" style="resize:vertical;" class="form-control"></textarea>
+								</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+									<label>&nbsp;</label>
+									<div class="checkbox-list">
+										<label>
+										<input type="checkbox"  value="1" name="dokSSP" id="id_dokSSP">  Sesuai Surat Perjanjian / Kontrak  </label>
+										<input type="text" name="dokSSP_in" id="id_dokSSP_in" class="nomor1 hidden ">
+										<label>
+										<input type="checkbox"  value="1" name="dokSSPK" id="id_dokSSPK">   Sesuai Surat Perintah Kerja (SPK) </label>
+										<input type="text" name="dokSSPK_in" id="id_dokSSPK_in" class="nomor1 hidden ">
 									</div>
-							</div>
-					</div><!-- END SCROLLER-->
+								</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+									<label>&nbsp;</label>
+									<div class="checkbox-list">
+										<label>
+										<input type="checkbox"  value="1" name="dokSBJ" id="id_dokSBJ">   Sesuai Bank Garansi / Surat Jaminan  </label>
+										<input type="text" name="dokSBJ_in" id="id_dokSBJ_in" class="nomor1 hidden ">
+									</div>
+								</div>
+                            </div>	
+                        </div>
+                    </div>    
+                    <!--END ROW 3 -->
+					<?php if($this->session->userdata('usergroup_desc') == 'Keuangan'){ ?>
+                    <div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Aproval Dept Keuangan</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                        <div class="form-body">
+					    	<div class="col-md-3">
+								<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appKeuanganId" class="form-control "
+					                type="text" name="appKeuanganId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Status</label>
+					                <select id="id_appKeuanganStatus" class="form-control " name="appKeuanganStatus" >
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					      		<div class="form-group">
+					            	<label>Tanggal</label>
+					                <input id="id_appKeuanganTgl" class="form-control "
+					                type="text" name="appKeuanganTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appKeuanganKet" id="id_appKeuanganKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+					   </div>
+                    </div>
+					<?php } ?>
+					<?php if($this->session->userdata('usergroup_desc') == 'Head Director'){ ?>
+                    <div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Approval Head Dept.</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="form-body">
+							<div class="col-md-3">
+					        	<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appHDId" class="form-control "
+					                type="text" name="appHDId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					        		<label>Status</label>
+					            	<select id="id_appHDStatus" class="form-control " name="appHDStatus" >
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					        	</div>
+					    	</div>
+					        <div class="col-md-2">
+					            <div class="form-group">
+					                <label>Tanggal</label>
+					                <input id="id_appHDTgl" class="form-control "
+					                type="text" name="appHDTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appHDKet" id="id_appHDKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+						</div>
+                    </div>
+					<?php } 
+					if($this->session->userdata('usergroup_desc') == 'General Manager'){ ?>
+                    <div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Approval General Manager</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="form-body">
+							<div class="col-md-3">
+					        	<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appGMId" class="form-control "
+					                type="text" name="appGMId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Status</label>
+					                <select id="id_appGMStatus" class="form-control " name="appGMStatus">
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Tanggal</label>
+					                <input id="id_appGMTgl" class="form-control "
+					                type="text" name="appGMTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appGMKet" id="id_appGMKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+						</div>
+                    </div>
+					<?php } 
+					if($this->session->userdata('usergroup_desc') == 'Admin'){ 
+					?>
+					<div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Aproval Dept Keuangan</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                        <div class="form-body">
+					    	<div class="col-md-3">
+								<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appKeuanganId" class="form-control "
+					                type="text" name="appKeuanganId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Status</label>
+					                <select id="id_appKeuanganStatus" class="form-control " name="appKeuanganStatus" >
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					      		<div class="form-group">
+					            	<label>Tanggal</label>
+					                <input id="id_appKeuanganTgl" class="form-control "
+					                type="text" name="appKeuanganTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appKeuanganKet" id="id_appKeuanganKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+					   </div>
+                    </div>
+					<div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Approval Head Dept.</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="form-body">
+							<div class="col-md-3">
+					        	<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appHDId" class="form-control "
+					                type="text" name="appHDId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					        		<label>Status</label>
+					            	<select id="id_appHDStatus" class="form-control " name="appHDStatus" >
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					        	</div>
+					    	</div>
+					        <div class="col-md-2">
+					            <div class="form-group">
+					                <label>Tanggal</label>
+					                <input id="id_appHDTgl" class="form-control "
+					                type="text" name="appHDTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appHDKet" id="id_appHDKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+						</div>
+                    </div>
+					<div class="row">
+                    	<div class="col-md-12">
+                    		<label><strong>Approval General Manager</strong></label>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="form-body">
+							<div class="col-md-3">
+					        	<div class="form-group">
+					            	<label>Approval</label>
+					                <input id="id_appGMId" class="form-control "
+					                type="text" name="appGMId" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Status</label>
+					                <select id="id_appGMStatus" class="form-control " name="appGMStatus" >
+										<option value="1">Approve</option>
+										<option value="2">Reject</option>
+										<option value="3">Paid</option>
+									</select>
+					            </div>
+					        </div>
+					        <div class="col-md-2">
+					        	<div class="form-group">
+					            	<label>Tanggal</label>
+					                <input id="id_appGMTgl" class="form-control "
+					                type="text" name="appGMTgl" readonly/>
+					            </div>
+					        </div>
+					        <div class="col-md-5">
+					        	<div class="form-group">
+					            	<label>Keterangan</label>
+					                <textarea rows="2" cols="" name="appGMKet" id="id_appGMKet" class="form-control" >
+                                    </textarea>        
+					            </div>
+					        </div>
+						</div>
+                    </div>
+					<?php } ?>
+                    <div class="row">    	
+			</div><!-- END SCROLLER-->
 			</div>	
 			</form>	
 			<!-- END MODAL BODY-->
 			<div class="modal-footer">
 				<div class="form-group">
-					<button type="submit" id="btnSimpan" form="FormApprovalAdv" class="btn btn-info"><i class="fa fa-save"></i> Save</button>
+					<span id="event_result">    
+					</span>
+				</div>	
+				<div class="form-group">
+					<?php if($this->session->userdata('usergroup_desc') == 'User'){ 
+					}else{ ?>
+					<button type="submit" id="btnSimpan" form="FormApprovalAdv" class="btn btn-info"><i class="fa fa-save"></i> Approve</button>
+					<?php } ?>
 					<button type="button" class="btn default" data-dismiss="modal" id="btnCloseModalDataUser">Cancel</button>
 				</div>
 			</div>
@@ -166,7 +512,6 @@
         Demo.init(); // init demo features
         //UITree.init();
 		TableManaged.init();
-    
 	});
     //$(function () {
     var judul_menu = $('#id_a_menu_<?php echo $menu_id; ?>').text();
@@ -203,10 +548,7 @@
                     "search": "Search:",
                     "zeroRecords": "No matching records found"
                 },
-
                 "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
-
-
                 "lengthMenu": [
                     [5, 10,15, 20, -1],
                     [5, 10,15, 20, "All"] // change per page values here
@@ -247,7 +589,7 @@
                     if (checked) {
                         $(this).attr("checked", true);
                         $(this).parents('tr').addClass("active");
-                    } else {
+                    }else{
                         $(this).attr("checked", false);
                         $(this).parents('tr').removeClass("active");
                     }
@@ -260,7 +602,8 @@
             });
             table.on('click', 'tbody tr', function () {
                 var id = $(this).find("td").eq(0).html();
-                $('#id').val(id);
+                getDescAdv(id);
+				$('#id_idAdvance').val(id);
                 $("#idDivAppAdv").modal("show");
             }); 
             tableWrapper.find('.dataTables_length select').addClass("form-control input-xsmall input-inline"); // modify table per page dropdown
@@ -277,19 +620,17 @@
     }();
 	
 	function ajax_submit_tambah(){
-		
 		$.ajax({
 			type:"POST",
 			url:"<?php echo base_url(); ?>approval_advance/approval",
 			data:dataString,
 			success:function (data) {
-				
 				var json = $.parseJSON(data);
-				console.log(data.act);
+				console.log(json);
 				if (json.act == '1'){
 					location.reload();
 				}else{
-					$("#event_result").append( data.notif );
+					alert( json.notif );
 				}
 			}
 	
@@ -307,6 +648,85 @@
 			}
     });
     
+	function getDescAdv(id){
+		
+		var idAdv = id;
+		if (idAdv != '') {
+			$.post("<?php echo site_url('/approval_advance/getDescAdv'); ?>",
+			{
+				'idAdv': idAdv
+			},function (data) {
+				//console.log(data);
+				if (data.baris == 1) {					
+					$('#id_kywId').val(data.id_kyw);
+					$('#id_namaKyw').val(data.nama_kyw);
+					$('#id_deptKyw').val(data.nama_dept);
+					$('#id_uangMuka').val(data.jml_uang);
+					$('#id_tglJT').val(data.tgl_jt);
+					$('#id_payTo').val(data.pay_to);
+					$('#id_namaPemilikAkunBank').val(data.nama_akun_bank);
+					$('#id_noAkunBank').val(data.no_akun_bank);
+					$('#id_namaBank').val(data.nama_bank);
+					$('#id_keterangan').val(data.keterangan);
+					$('#id_appKeuanganId').val(data.app_keuangan_id);
+					$('#id_appKeuanganStatus').val(data.app_keuangan_status);
+					$('#id_appKeuanganTgl').val(data.app_keuangan_tgl);
+					$('#id_appKeuanganKet').val(data.app_keuangan_ket);
+					$('#id_appHDId').val(data.app_hd_id);
+					$('#id_appHDStatus').val(data.app_hd_status);
+					$('#id_appHDTgl').val(data.app_hd_tgl);
+					$('#id_appHDKet').val(data.app_hd_ket);
+					$('#id_appGMId').val(data.app_gm_id);
+					$('#id_appGMStatus').val(data.app_gm_status);
+					$('#id_appGMTgl').val(data.app_gm_tgl);
+					$('#id_appGMKet').val(data.app_gm_ket);
+					
+					if(data.dok_po == '1'){
+						//$("#uniform-id_dokPO").addClass("focus");
+						//$("#id_dokPO").attr("value","1");
+						$("#uniform-id_dokPO span").addClass("checked");
+						$('#id_dokPO_in').val('1');
+					}else{
+						$("#uniform-id_dokPO span").removeClass("checked");
+						$('#id_dokPO_in').val('0');
+					}
+					if(data.dok_sp == '1'){
+						$("#uniform-id_dokSP span").addClass("checked");
+						$('#id_dokSP_in').val('1');
+					}else{
+						$("#uniform-id_dokSP span").removeClass("checked");
+						$('#id_dokSP_in').val('0');
+					}
+					if(data.dok_ssp == '1'){
+						$("#uniform-id_dokSSP span").addClass("checked");
+						$('#id_dokSSP_in').val('1');
+					}else{
+						$("#uniform-id_dokSSP span").removeClass("checked");
+						$('#id_dokSSP_in').val('0');
+					}
+					if(data.dok_sspk == '1'){
+						$("#uniform-id_dokSSPK span").addClass("checked");
+						$('#id_dokSSPK_in').val('1');
+					}else{
+						$("#uniform-id_dokSSPK span").removeClass("checked");
+						$('#id_dokSSPK_in').val('0');
+					}
+					if(data.dok_sbj == '1'){
+						$("#uniform-id_dokSBJ span").addClass("checked");
+						$('#id_dokSBJ_in').val('1');
+					}else{
+						$("#uniform-id_dokSBJ span").removeClass("checked");
+						$('#id_dokSBJ_in').val('0');
+					}
+					/* 
+					$('#').val(data.); */					                    
+				}else{
+					alert('Data tidak ditemukan!');
+					$('#id_btnBatal').trigger('click');
+				}
+			}, "json");
+		}//if kd<>''
+	}
 </script>
 
 

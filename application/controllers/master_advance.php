@@ -261,7 +261,6 @@ class Master_advance extends CI_Controller
     	if($this->auth->is_logged_in() == false){
     		redirect('main/index');
     	}else{
-    		//$id = $this->uri->segment(3);
     		$data['advance'] = $this->master_advance_m->getDescAdv($idAdv);
     		$this->load->view('cetak/cetak_advance',$data);
     	}

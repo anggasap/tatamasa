@@ -973,6 +973,14 @@
 			}
         }
     }); 
+    function cetak(){
+		var idAdvance = $('#id_idAdvance').val();
+		if(idAdvance == ''){
+			alert('Silahkan pilih ID Advance');
+		}else{
+			window.open("<?php echo base_url('master_advance/cetak/'); ?>/"+idAdvance, '_blank');	
+		}
+	}
     
 </script>
 

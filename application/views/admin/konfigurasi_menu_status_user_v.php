@@ -236,7 +236,7 @@ $(function () {
 					//alert(total_menu);
                     //alert(jmlx);
                     for (i = 0; i < total_menu; i++) {
-						//alert(data.data_menu[i].menu_id);
+						
 						$("#"+data.data_menu[i].menu_id).jstree('open_node', data.data_menu[i].menu_id);
 						$("#a"+data.data_menu[i].menu_id+"_"+data.data_menu[i].parent).trigger('click');
 						//$("#a"+data.data_menu[i].menu_id+"_"+data.data_menu[i].parent).addClass('jstree-clicked');
