@@ -55,7 +55,8 @@ class Auth{
          		'dataTables-bootstrapJS'  => '<script src="'.base_url('metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js').'"></script>',
          		'metronicJS'  => '<script src="'.base_url('metronic/global/scripts/metronic.js').'"></script>',
          		'layoutJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/layout.js').'"></script>',
-         		'demoJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/demo.js').'"></script>'
+         		'demoJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/demo.js').'"></script>',
+                //'compPickersJS'  => '<script src="'.base_url('metronic/admin/pages/scripts/components-pickers.js').'"></script>'
          		
          		/* 'JS'  => '<script src="'.base_url('').'"></script>' */
          );

@@ -30,7 +30,8 @@ class Master_advance extends CI_Controller
 		$data['menu_nama'] = $menuId[0]->menu_nama;
 		$this->auth->restrict ($data['menu_id']);
 		$this->auth->cek_menu ( $data['menu_id'] );
-        //$data['dept'] = $this->master_advance_m->get_dept();
+        $data['proyek'] = $this->master_advance_m->getProyek();
+        $data['kurs'] = $this->master_advance_m->getKurs();
        
 		if(isset($_POST["btnSimpan"])){
 			$this->simpan();
@@ -77,6 +78,23 @@ class Master_advance extends CI_Controller
 		}
 		$this->output->set_output(json_encode($data));
 	}
+    function getDescKurs(){
+		$this->CI =& get_instance();
+		$idKurs = $this->input->post ( 'idKurs', TRUE );
+		$rows = $this->master_advance_m->getDescKurs( $idKurs );
+		if($rows){
+			foreach ( $rows as $row )
+				$nilai_kurs = number_format($row->nilai_kurs,2);
+				$array = array (
+						'baris'=>1,
+						'nilai_kurs'=>$nilai_kurs
+				);
+		}else{
+			$array=array('baris'=>0);
+		}
+	
+		$this->output->set_output(json_encode($array));
+	}
 	function getDescAdv(){
 		$this->CI =& get_instance();
 		$idAdv = $this->input->post ( 'idAdv', TRUE );
@@ -92,6 +110,9 @@ class Master_advance extends CI_Controller
 						'nama_kyw'=>$row->nama_kyw,
 						'nama_dept'=>$row->nama_dept,
 						'jml_uang' => $jml_uang,
+                        'id_proyek' => $row->id_proyek,
+                        'id_kurs' => $row->id_kurs,
+                        'nilai_kurs' => $row->nilai_kurs,
 						'tgl_trans'	=>$tglTrans,
 						'tgl_jt' => $tgl_jt,
 						'pay_to' => $row->pay_to,
@@ -129,6 +150,10 @@ class Master_advance extends CI_Controller
     function simpan(){
         $idKyw			= trim($this->input->post('kywId'));
         $uangMuka		= str_replace(',', '', trim($this->input->post('uangMuka')));
+        $idProyek			= trim($this->input->post('proyek'));
+        $idKurs			= trim($this->input->post('kurs'));
+        $nilaiKurs		= str_replace(',', '', trim($this->input->post('nilaiKurs')));
+        $idKyw			= trim($this->input->post('kywId'));
         $tglTrans			= trim($this->input->post('tglTrans'));
         $tglTrans 			= date ( 'Y-m-d', strtotime ( $tglTrans ) );
         $tglJT			= trim($this->input->post('tglJT'));
@@ -144,12 +169,18 @@ class Master_advance extends CI_Controller
         $dokSSPK			= trim($this->input->post('dokSSPK_in'));
         $dokSBJ			= trim($this->input->post('dokSBJ_in'));
         //$ket			= trim($this->input->post(''));
+        
+        $bulan = date ( 'm', strtotime ( $tglTrans ) );//$tglTrans->format("m");
+        $tahun = date ( 'Y', strtotime ( $tglTrans ) ); //$tglTrans->format("Y");
                 
-        $modelidAdv = $this->master_advance_m->getIdAdv();
+        $modelidAdv = $this->master_advance_m->getIdAdv($bulan,$tahun);
         $data = array(
             'id_advance'		      	=>$modelidAdv,
             'id_kyw'		        	=>$idKyw,
             'jml_uang'		        	=>$uangMuka,
+            'id_proyek'                 => $idProyek,
+            'id_kurs'                   => $idKurs,
+            'nilai_kurs'                => $nilaiKurs,
         	'tgl_trans'		        	=>$tglTrans,
         	'tgl_jt'		        	=>$tglJT,
         	'pay_to'		        	=>$payTo,
@@ -192,6 +223,9 @@ class Master_advance extends CI_Controller
     	$idAdv			= trim($this->input->post('idAdvance'));
     	$idKyw			= trim($this->input->post('kywId'));
     	$uangMuka		= str_replace(',', '', trim($this->input->post('uangMuka')));
+        $idProyek			= trim($this->input->post('proyek'));
+        $idKurs			= trim($this->input->post('kurs'));
+        $nilaiKurs		= str_replace(',', '', trim($this->input->post('nilaiKurs')));
     	$tglJT			= trim($this->input->post('tglJT'));
     	$tglJT 			= date ( 'Y-m-d', strtotime ( $tglJT ) );
     	$payTo			= trim($this->input->post('payTo'));
@@ -208,6 +242,9 @@ class Master_advance extends CI_Controller
     	$data = array(
     			'id_kyw'		        	=>$idKyw,
     			'jml_uang'		        	=>$uangMuka,
+                'id_proyek'                 => $idProyek,
+                'id_kurs'                   => $idKurs,
+                'nilai_kurs'                => $nilaiKurs,
     			'tgl_jt'		        	=>$tglJT,
     			'pay_to'		        	=>$payTo,
     			'nama_akun_bank'		    =>$namaPemilikAkunBank,

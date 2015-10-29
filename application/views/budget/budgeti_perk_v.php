@@ -19,6 +19,7 @@
 					<i class="fa fa-print"></i> Cetak </a>
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
 					</a>
+                    <input type="hidden" id="tahun" value="<?php echo $tahun; ?>">
 				</div>
                 
                 <!-- <div class="actions">
@@ -441,6 +442,14 @@
     }();
     
     //Ready Doc
+    function cetak(){
+		var tahunPerk = $('#tahun').val();
+		if(tahunPerk == ''){
+			alert('Silahkan tahun budget');
+		}else{
+			window.open("<?php echo base_url('budgeti_perk/cetak/'); ?>/"+tahunPerk, '_blank');	
+		}
+	}
     
 </script>
 

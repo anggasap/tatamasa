@@ -10,6 +10,7 @@ class Master_cflow extends CI_Controller
 
 		$this->load->model('home_m');
 		$this->load->model('master_cflow_m');
+        $this->load->library('fpdf');
 		session_start ();
 	}
 	public function index(){
@@ -121,15 +122,15 @@ class Master_cflow extends CI_Controller
         $this->output->set_output(json_encode($array));
     }
     function ubah(){
-    	$kdPerk			= trim($this->input->post('kodePerk'));
+    	$kdCflow		= trim($this->input->post('kodeCflow'));
     	$kdAlt			= trim($this->input->post('kodeAlt'));
-        $namaPerk		= trim($this->input->post('namaPerk'));
+        $namaCflow		= trim($this->input->post('namaCflow'));
         
         $data = array(
         	'kode_alt'		        	=>$kdAlt,
-            'nama_perk'		        	=>$namaPerk
+            'nama_cflow'		        =>$namaCflow
         );
-    	$model = $this->master_cflow_m->update($data,$kdPerk);
+    	$model = $this->master_cflow_m->update($data,$kdCflow);
     	if($model){
     		$array = array(
     			'act'	=>1,
@@ -147,34 +148,34 @@ class Master_cflow extends CI_Controller
     }
     function hapus(){
     	$this->CI =& get_instance();
-    	$kdPerk			= trim($this->input->post('idPerk'));
-    	$cekSaldoKodePerk = $this->master_cflow_m->cekSaldoKodePerk( $kdPerk);
-    	if($cekSaldoKodePerk[0]->saldo > 0){
+    	$kdCflow			= trim($this->input->post('idCflow'));
+    	$cekSaldoKodeCflow = $this->master_cflow_m->cekSaldoKodeCflow( $kdCflow);
+    	if($cekSaldoKodeCflow[0]->saldo > 0){
     		$array = array(
     				'act'	=>0,
     				'tipePesan'=>'error',
     				'pesan' =>'Data gagal dihapus.<br/> Kode Perk mempunyai saldo.'
     		);
     	}else{
-    		$cekTipeKodePerk = $this->master_cflow_m->cekTipeKodePerk( $kdPerk);
-    		if($cekTipeKodePerk == 'G'){
+    		$cekTipeKodeCflow = $this->master_cflow_m->cekTipeKodeCflow( $kdCflow);
+    		if($cekTipeKodeCflow[0]->type == 'G'){
     			$array = array(
     					'act'	=>0,
     					'tipePesan'=>'error',
     					'pesan' =>'Data gagal dihapus.<br/> Kode Perk induk tidak dapat dihapus .'
     			);
-    		}else{
-    			$model = $this->master_cflow_m->delete( $kdPerk);
+    		}else if($cekTipeKodeCflow[0]->type == 'D'){
+    			$model = $this->master_cflow_m->delete( $kdCflow);
     			
     			if($model){
-    				$kodePerkRoot = substr($kdPerk,0,-2);
-    				$cekJmlKodeInduk = $this->master_cflow_m->cekJmlKodeInduk( $kodePerkRoot);// cek kode induk punya anak berapa buah
+    				$kodeCflowRoot = substr($kdCflow,0,-2);
+    				$cekJmlKodeInduk = $this->master_cflow_m->cekJmlKodeInduk( $kodeCflowRoot);// cek kode induk punya anak berapa buah
     				if($cekJmlKodeInduk== 0 ){
     					
     					 $data = array(
     					 'type'		    			=>'D'
     					 );
-    					 $model2 = $this->master_cflow_m->updateTipe($data,$kodePerkRoot); 
+    					 $model2 = $this->master_cflow_m->updateTipe($data,$kodeCflowRoot); 
     				}
     				$array = array(
     						'act'	=>1,
@@ -188,6 +189,12 @@ class Master_cflow extends CI_Controller
     						'pesan' =>'Data gagal dihapus.'
     				);
     			}	
+    		}else{
+    		  $array = array(
+    						'act'	=>0,
+    						'tipePesan'=>'error',
+    						'pesan' =>'Data gagal dihapus.<br> Tipe kode cash flow tidak ditemukan.'
+    				);
     		}
     			
     	}
@@ -195,18 +202,25 @@ class Master_cflow extends CI_Controller
     	
     	$this->output->set_output(json_encode($array));
     }
+    
     function updatekodeinduk(){
     	$this->master_cflow_m->updatekodeinduk();
     }
     function cetak(){
-    	if($this->auth->is_logged_in() == false){
+		if($this->auth->is_logged_in() == false){
     		redirect('main/index');
     	}else{
-    		$data['perkiraan'] = $this->master_cflow_m->getAllPerkiraan();
-    		$this->load->view('cetak/cetak_perkiraan',$data);
+			define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+			$data['image1'] = base_url('metronic/img/tatamasa_logo.jpg');	
+			$data['nama'] = 'PT BERKAH GRAHA MANDIRI';
+			$data['tower'] = 'Beltway Office Park Tower Lt. 5';
+			$data['alamat'] = 'Jl. TB Simatung No. 41 - Pasar Minggu - Jakarta Selatan';
+			$data['laporan'] = 'Laporan Cash Flow';
+			$data['user'] = $this->session->userdata('username');
+			$data['all'] = $this->master_cflow_m->getAllCflow();
+			$this->load->view('cetak/cetak_cashflow',$data);
     	}
-    
-    }
+	}
 }
 
 /* End of file sec_user.php */

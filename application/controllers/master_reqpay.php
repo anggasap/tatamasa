@@ -265,7 +265,15 @@ class Master_reqpay extends CI_Controller
     	}
     	$this->output->set_output(json_encode($array));
     }
-	
+	function cetak($idReqPay)
+    {
+    	if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+    		$data['reqpay'] = $this->master_reqpay_m->getDescReqpay($idReqPay);
+    		$this->load->view('cetak/request_for_payment',$data);
+    	}
+    }
 
 }
 

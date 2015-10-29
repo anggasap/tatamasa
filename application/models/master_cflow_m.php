@@ -52,10 +52,10 @@ class Master_cflow_m extends CI_Model {
 			return true;
 		}
 	}
-	function update($data,$kdPerk){
+	function update($data,$kdCflow){
 		$this->db->trans_begin();
-		$query1 = $this->db->where('kode_perk', $kdPerk);
-		$query2 = $this->db->update('perkiraan', $data);
+		$query1 = $this->db->where('kode_cflow', $kdCflow);
+		$query2 = $this->db->update('master_cashflow', $data);
 		if ($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
 			return false;
@@ -65,22 +65,22 @@ class Master_cflow_m extends CI_Model {
 			return true;
 		}
 	}
-	public function cekSaldoKodePerk($kdPerk){
-		$sql="SELECT saldo_akhir as saldo from perkiraan where kode_perk ='$kdPerk'";
+	public function cekSaldoKodeCflow($kdCflow){
+		$sql="SELECT saldo_akhir as saldo from master_cashflow where kode_cflow ='$kdCflow'";
 		$query=$this->db->query($sql);
 		$hasil = $query->result();
 		return $hasil;
 				 // returning rows, not row
 	}
-	public function cekTipeKodePerk($kdPerk){
-		$sql="SELECT type from perkiraan where kode_perk ='$kdPerk'";
+	public function cekTipeKodeCflow($kdCflow){
+		$sql="SELECT type from master_cashflow where kode_cflow ='$kdCflow'";
 		$query=$this->db->query($sql);
 		$hasil = $query->result();
 		return $hasil;
 		// returning rows, not row
 	}
-	public function cekJmlKodeInduk($kodePerkRoot){
-		$sql="SELECT kode_perk from perkiraan where kode_induk ='$kodePerkRoot'";
+	public function cekJmlKodeInduk($kodeCflowRoot){
+		$sql="SELECT kode_cflow from master_cashflow where kode_induk ='$kodeCflowRoot'";
 		$query=$this->db->query($sql);
 		//$hasil = $query->result();
 		$jml = $query->num_rows();
@@ -88,10 +88,10 @@ class Master_cflow_m extends CI_Model {
 		// returning rows, not row
 	}
 	
-	function delete($idPerk){
+	function delete($kdCflow){
 		$this->db->trans_begin();
-		$query1	=	$this->db->where('kode_perk',$idPerk);
-		$query2	=   $this->db->delete('perkiraan');
+		$query1	=	$this->db->where('kode_cflow',$kdCflow);
+		$query2	=   $this->db->delete('master_cashflow');
 		if ($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
 			return false;

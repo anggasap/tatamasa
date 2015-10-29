@@ -14,12 +14,12 @@
                     <i class="fa fa-cogs  font-red-sunglo"></i>
                     <span class="caption-subject font-red-sunglo bold uppercase">Data Master Settlement Of Advance</span>
                 </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse">
-                    </a>
-                    <a href="javascript:;" class="fullscreen">
-                    </a>
-                </div>
+                <div class="actions">
+					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
+					<i class="fa fa-print"></i> Cetak </a>
+					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
+					</a>
+				</div>
             </div>
             <div class="portlet-body">
                 <div>
@@ -1138,6 +1138,14 @@
 			}
         }
     }); 
+    function cetak(){
+		var idAdvance = $('#id_idAdvance').val();
+		if(idAdvance == ''){
+			alert('Silahkan pilih ID Advance');
+		}else{
+			window.open("<?php echo base_url('master_settle_adv/cetak/'); ?>/"+idAdvance, '_blank');	
+		}
+	}
     
 </script>
 

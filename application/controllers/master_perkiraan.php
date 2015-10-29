@@ -166,13 +166,13 @@ class Master_perkiraan extends CI_Controller
     		);
     	}else{
     		$cekTipeKodePerk = $this->master_perkiraan_m->cekTipeKodePerk( $kdPerk);
-    		if($cekTipeKodePerk == 'G'){
+    		if($cekTipeKodePerk[0]->type == 'G'){
     			$array = array(
     					'act'	=>0,
     					'tipePesan'=>'error',
     					'pesan' =>'Data gagal dihapus.<br/> Kode Perk induk tidak dapat dihapus .'
     			);
-    		}else{
+    		}else if($cekTipeKodePerk[0]->type == 'D'){
     			$model = $this->master_perkiraan_m->delete( $kdPerk);
     			
     			if($model){
@@ -197,6 +197,12 @@ class Master_perkiraan extends CI_Controller
     						'pesan' =>'Data gagal dihapus.'
     				);
     			}	
+    		}else{
+    		  $array = array(
+    						'act'	=>0,
+    						'tipePesan'=>'error',
+    						'pesan' =>'Data gagal dihapus.<br> Tipe kode perkiraan tidak ditemukan.'
+    				);
     		}
     			
     	}  	

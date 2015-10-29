@@ -15,8 +15,35 @@ function readyToStart(){
 	        $(this).val(number_format(angka,2));
 	    }
 	});
-
+    $(".nomor").keyup(function(){
+        var val = $(this).val();
+        if(isNaN(val)){
+            val = val.replace(/[^0-9\.]/g,'');
+            if(val.split('.').length>2)
+                val =val.replace(/\.+$/,"");
+            }
+        $(this).val(val);
+	    
+	});
+    
 	$(".nomor1").val("0");
+    $(".nomor1").focusout(function(){
+	    if ($(this).val() == '') {
+	        $(this).val('0');
+	    }else{
+	        $(this).val(val);
+	    }
+	});
+    $(".nomor1").keyup(function(){
+        var val = $(this).val();
+        if(isNaN(val)){
+            val = val.replace(/[^0-9\.]/g,'');
+            if(val.split('.').length>2)
+                val =val.replace(/\.+$/,"");
+            }
+        $(this).val(val);
+        
+    });
 }
 function startCheckBox(){
 	$(".checker span").removeClass("checked");
@@ -24,6 +51,7 @@ function startCheckBox(){
 function resetForm(){
 	$( "form input:text" ).val('');
 	$( "form textarea" ).val('');
+    $( "form select" ).val('');
 }
 /**
  * FUNCTION
@@ -40,6 +68,10 @@ function ajaxModal(){
         $('.modal_json').fadeOut('fast');
     });
 }
+function CleanNumber(value) {
+        newValue = value.replace(/\,/g, '');
+        return newValue;
+    }
 var UIToastr = function () {
     return {
         //main function to initiate the module

@@ -15,12 +15,10 @@ class Budgeti_perk_m extends CI_Model {
 	}
 	public function getBudgetPerk($tahun)
 	{
-		$sql="SELECT b.*,p.nama_perk from budget_perkiraan b left join perkiraan p on b.kode_perk = p.kode_perk where b.tahun = '$tahun'";
+		$sql="SELECT b.*,p.nama_perk,p.level from budget_perkiraan b left join perkiraan p on b.kode_perk = p.kode_perk where b.tahun = '$tahun'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
-	
-	
 	
 	function update($data,$kode_perk){
 		$this->db->trans_begin();

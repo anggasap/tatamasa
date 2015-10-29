@@ -16,6 +16,8 @@
                     <span class="caption-subject font-red-sunglo bold uppercase">Data Master Cash Flow </span>
                 </div>
                 <div class="actions">
+                    <a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
+					<i class="fa fa-print"></i> Cetak </a>
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
 					</a>
 				</div>
@@ -185,7 +187,7 @@
 </div>
 
 <!-- END PAGE CONTENT-->
-<!--  MODAL Data Karyawan -->
+<!--  MODAL Data Cash FLow -->
 <div class="modal fade draggable-modal" id="idDivTabelPerk" tabindex="-1" role="basic" aria-hidden="true">
 	<div class="modal-dialog  modal-lg">
 		<div class="modal-content">
@@ -238,7 +240,7 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
-<!--  END  MODAL Data Karyawan -->
+<!--  END  MODAL Cash Flow -->
 
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -385,7 +387,7 @@
     				
                     $( "#btnCloseModal" ).trigger( "click" );
                     //$("#id_kodeCflow").focus();
-                    //$("#id_btnModal2").attr("disabled",true);
+                    $("#id_btnModal2").attr("disabled",true);
                 }else{
                 	var kodeCflow = $(this).find("td").eq(0).html();
                     $('#id_kodeCflow').val(kodeCflow);
@@ -462,6 +464,9 @@
 	$('#id_btnModal2').click(function(){
 		$('#idTmpModalBtn').val('2');
 	});
+    function cetak(){
+			window.open("<?php echo base_url('master_cflow/cetak'); ?>", '_blank');	
+	}
 	function getLastKdCflow(kodeCflowRoot,lvlCflowRoot){
 		ajaxModal();
 		if (kodeCflowRoot != '') {
@@ -497,7 +502,7 @@
 		$.ajax({
 			type:"POST",
 			dataType: "json",
-			url:"<?php echo base_url(); ?>master_perkiraan/ubah",
+			url:"<?php echo base_url(); ?>master_cflow/ubah",
 			data:dataString,
 	
 			success:function (data) {
@@ -516,7 +521,7 @@
 		$.ajax({
 			type:"POST",
 			dataType: "json",
-			url:"<?php echo base_url(); ?>master_perkiraan/hapus",
+			url:"<?php echo base_url(); ?>master_cflow/hapus",
 			data:{idCflow : idCflow},
 			success:function (data) {
 				$('#id_Reload').trigger('click');

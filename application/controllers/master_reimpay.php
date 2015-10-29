@@ -256,7 +256,15 @@ class Master_reimpay extends CI_Controller
     	}
     	$this->output->set_output(json_encode($array));
     }
-	
+	function cetak($idReimPay)
+    {
+    	if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+    		$data['reimpay'] = $this->master_reimpay_m->getDescReimpay($idReimPay);
+    		$this->load->view('cetak/reimbursment',$data);
+    	}
+    }
 
 }
 

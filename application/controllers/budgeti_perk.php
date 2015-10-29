@@ -9,6 +9,7 @@ class Budgeti_perk extends CI_Controller
 
 		$this->load->model('home_m');
 		$this->load->model('budgeti_perk_m');
+        $this->load->library('fpdf');
 		session_start ();
 	}
 	public function index(){
@@ -99,7 +100,21 @@ class Budgeti_perk extends CI_Controller
     	}
     	$this->output->set_output(json_encode($array));
     }
-    
+    function cetak($tahun){
+		if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+			define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+			$data['image1'] = base_url('metronic/img/tatamasa_logo.jpg');	
+			$data['nama'] = 'PT BERKAH GRAHA MANDIRI';
+			$data['tower'] = 'Beltway Office Park Tower Lt. 5';
+			$data['alamat'] = 'Jl. TB Simatung No. 41 - Pasar Minggu - Jakarta Selatan';
+			$data['laporan'] = 'Laporan Budget Perkiraan';
+			$data['user'] = $this->session->userdata('username');
+			$data['all'] = $this->budgeti_perk_m->getBudgetPerk($tahun);
+			$this->load->view('cetak/cetak_budget_perkiraan',$data);
+    	}
+	}
 	
 
 }
