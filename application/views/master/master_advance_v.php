@@ -227,6 +227,169 @@ echo form_dropdown('kurs', $data, '',
                         </div>
                     </div>    
                     <!--END ROW 3 -->
+<!--  MODAL Data CPA -->
+<div class="modal fade draggable-modal" id="idDivCPA" tabindex="-1" role="basic" aria-hidden="true">
+	<div class="modal-dialog  modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Data CPA</h4>
+			</div>
+			<div class="modal-body">
+                    <div class="scroller" style="height:400px; ">
+                        <div class="row">
+                            <div class="form-body">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!--<label>Kode perk</label>-->
+                                                <div class="input-group">
+                                                    <input id="id_kodePerk" readonly class="form-control input-sm kosongCPA"
+                                                   type="text" name="kodePerk" placeholder="Kode Perk"/>
+                                                    <span class="input-group-btn">
+                                        	           <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelPerk"
+                                                        id="id_btnModal2" data-toggle="modal">
+                                                        <i class="fa fa-search fa-fw"/></i>
+                                        	           </a>
+                                    	           </span>
+                                                </div> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>&nbsp;</label>
+                                                <!--<input id="id_kodeAlt" readonly class="form-control input-sm kosongCPA"
+                                                   type="text" name="kodeAlt" placeholder="Kode Perk Alternatif"/>-->
+                                                   <span id="id_kodeAlt" class="tkosongCPA"></span>
+                                                   <span id="id_namaPerk" class="tkosongCPA"></span>
+                                            </div>
+                                        </div>
+                                           
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <input id="id_namaPerk" readonly class="form-control input-sm kosongCPA"
+                                        type="text" name="namaPerk" placeholder="Nama Perk"/>
+                                    </div>-->
+                                    
+					            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!--<label>Kode Cash Flow</label>-->
+                                                <div class="input-group">
+                                                    <input id="id_kodeCflow" readonly class="form-control input-sm kosongCPA"
+                                                   type="text" name="kodeCflow" placeholder="Kode Cash Flow"/>
+                                                    <span class="input-group-btn">
+                                        	           <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelCflow"
+                                                        id="id_btnModal2" data-toggle="modal">
+                                                        <i class="fa fa-search fa-fw"/></i>
+                                        	           </a>
+                                    	           </span>
+                                                </div> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>&nbsp;</label>
+                                                <!--<input id="id_kodeAltCflow" readonly class="form-control input-sm kosongCPA"
+                                                   type="text" name="kodeAltCflow" placeholder="Kode Cash Flow Alternatif"/>-->
+                                                   <label><span id="id_kodeAltCflow" class="tkosongCPA"></span></label>
+                                                   <label><span id="id_namaCflow" class="tkosongCPA"></span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <input id="id_namaCflow" readonly class="form-control input-sm kosongCPA"
+                                        type="text" name="namaCflow" placeholder="Nama Cash flow"/>
+                                    </div>-->
+					            </div>
+                            </div>
+                        </div>
+                        <!-- END ROW-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Jumlah</label>
+                                    <input id="id_jumlahCPA" class="form-control input-sm nomor "
+                                                   type="text" name="jumlahCPA"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <textarea rows="2" cols="" name="keteranganCPA"  id="id_keteranganCPA" class="form-control input-sm kosongCPA">
+                                        </textarea>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="idTxtTempLoop" name="txtTempLoop" class="form-control nomor1 ">
+                                        <input type="text" id="idTempUbahCPA" name="txtTempUbahCPA" class="form-control nomor1 ">
+                                        <a href="javascript:;" class="btn blue btn-sm" id="id_btnAddCpa">
+                                            <i class="fa fa-plus"></i>
+			                             </a>
+                                        <a href="javascript:;" class="btn red btn-sm" id="id_btnRemoveCpa">
+                                            <i class="fa fa-minus"></i>
+			                             </a> 
+                                         <a href="javascript:;" class="btn yellow btn-sm" id="id_btnUpdateCpa">
+                                            <i class="fa fa-edit"></i>
+			                             </a> 
+                                         <a href="javascript:;" class="btn default btn-sm" id="id_btnBatalCpa">
+                                            <i class="fa fa-times"></i>
+			                             </a>                                  
+                                    </div>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-body">
+                                <table class="table table-striped table-hover table-bordered" id="id_tabelPerkCflow">
+                                    <thead>
+                                        <tr>
+                                            <th width="20%">
+                                                Kode Perk
+                                            </th>
+                                            <th width="20%">
+                                                Kode Akun
+                                            </th>
+                                            <th width="40%">
+                                                Keterangan
+                                            </th>
+                                            <th width="20%">
+                                                Jumlah
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="id_body_data">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Total :</label>
+                                        <input type="text" name="totalCPA" class="form-control nomor input-sm" id="idTotalCPA" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                    <!-- END SCROLLER-->
+                </div>
+                <!-- END MODAL BODY-->
+			<div class="modal-footer">
+				<button type="button" class="btn default" data-dismiss="modal" id="btnCloseModalDataCPA">Close</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!--  END  MODAL Data CPA -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-actions">
@@ -369,161 +532,7 @@ echo form_dropdown('kurs', $data, '',
 </div>
 
 <!-- END PAGE CONTENT-->
-<!--  MODAL Data CPA -->
-<div class="modal fade draggable-modal" id="idDivCPA" tabindex="-1" role="basic" aria-hidden="true">
-	<div class="modal-dialog  modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-				<h4 class="modal-title">Data CPA</h4>
-			</div>
-			<div class="modal-body">
-                    <div class="scroller" style="height:400px; ">
-                        <div class="row">
-                            <div class="form-body">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Kode perk</label>
-                                                <div class="input-group">
-                                                    <input id="id_kodePerk" readonly class="form-control input-sm"
-                                                   type="text" name="kodePerk"/>
-                                                    <span class="input-group-btn">
-                                        	           <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelPerk"
-                                                        id="id_btnModal2" data-toggle="modal">
-                                                        <i class="fa fa-search fa-fw"/></i>
-                                        	           </a>
-                                    	           </span>
-                                                </div> 
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>&nbsp;</label>
-                                                <input id="id_kodeAlt" readonly class="form-control input-sm"
-                                                   type="text" name="kodeAlt" placeholder="Kode Perk Alternatif"/>
-                                            </div>
-                                        </div>
-                                           
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="id_namaPerk" readonly class="form-control input-sm"
-                                        type="text" name="namaPerk" placeholder="Nama Perk"/>
-                                    </div>
-                                    
-					            </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Kode Cash Flow</label>
-                                                <div class="input-group">
-                                                    <input id="id_kodeCflow" readonly class="form-control input-sm"
-                                                   type="text" name="kodeCflow"/>
-                                                    <span class="input-group-btn">
-                                        	           <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelCflow"
-                                                        id="id_btnModal2" data-toggle="modal">
-                                                        <i class="fa fa-search fa-fw"/></i>
-                                        	           </a>
-                                    	           </span>
-                                                </div> 
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>&nbsp;</label>
-                                                <input id="id_kodeAltCflow" readonly class="form-control input-sm"
-                                                   type="text" name="kodeAltCflow" placeholder="Kode Cash Flow Alternatif"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="id_namaCflow" readonly class="form-control input-sm"
-                                        type="text" name="namaCflow" placeholder="Nama Cash flow"/>
-                                    </div>
-					            </div>
-                            </div>
-                        </div>
-                        <!-- END ROW-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Jumlah</label>
-                                    <input id="id_jumlahCPA" class="form-control input-sm nomor"
-                                                   type="text" name="jumlahCPA"/>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                        <textarea rows="2" cols="" name="keteranganCPA"  id="id_keteranganCPA" class="form-control input-sm">
-                                        </textarea>
 
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" id="idTxtTempLoop" name="txtTempLoop" class="form-control hidden">
-                                        <a href="javascript:;" class="btn blue btn-sm" id="id_btnAddPerk">
-                                            <i class="fa fa-plus"></i>
-			                             </a>
-                                        <a href="javascript:;" class="btn red btn-sm" id="id_btnRemovePerk">
-                                            <i class="fa fa-minus"></i>
-			                             </a>                                    
-                                    </div>
-                            </div>
-                        </div>    
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-body">
-                                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-                                    <thead>
-                                        <tr>
-                                            <th width="20%">
-                                                Kode Perk
-                                            </th>
-                                            <th width="20%">
-                                                Kode Akun
-                                            </th>
-                                            <th width="30%">
-                                                Keterangan
-                                            </th>
-                                            <th width="15%">
-                                                Jumlah
-                                            </th>
-                                            <th width="15%">
-                                                Act
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="id_body_data">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Total :</label>
-                                        <input type="text" name="totalCPA" class="form-control nomor input-sm" id="idTotalCPA" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>        
-                    </div>
-                    <!-- END SCROLLER-->
-                </div>
-                <!-- END MODAL BODY-->
-			<div class="modal-footer">
-				<button type="button" class="btn default" data-dismiss="modal" id="btnCloseModalDataCPA">Close</button>
-			</div>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!--  END  MODAL Data CPA -->
 <!--  MODAL Data Karyawan -->
 <div class="modal fade draggable-modal" id="idDivTabelKyw" tabindex="-1" role="basic" aria-hidden="true">
 	<div class="modal-dialog  modal-lg">
@@ -1075,9 +1084,9 @@ echo form_dropdown('kurs', $data, '',
                 	var kodePerk = $(this).find("td").eq(0).html();
                     $('#id_kodePerk').val(kodePerk);
                     var kodeAlt = $(this).find("td").eq(1).html();
-                    $('#id_kodeAlt').val(kodeAlt);
+                    $('#id_kodeAlt').text(kodeAlt);
                     var namaPerk = $(this).find("td").eq(2).html();
-                    $('#id_namaPerk').val(namaPerk);
+                    $('#id_namaPerk').text(namaPerk);
                     
                 	$( "#btnCloseModalPerk" ).trigger( "click" );
                 
@@ -1167,9 +1176,9 @@ echo form_dropdown('kurs', $data, '',
                 	var kodeCflow = $(this).find("td").eq(0).html();
                     $('#id_kodeCflow').val(kodeCflow);
                     var kodeAlt = $(this).find("td").eq(1).html();
-                    $('#id_kodeAltCflow').val(kodeAlt);
+                    $('#id_kodeAltCflow').text(kodeAlt);
                     var namaCflow = $(this).find("td").eq(2).html();
-                    $('#id_namaCflow').val(namaCflow);
+                    $('#id_namaCflow').text(namaCflow);
                     
                 	$( "#btnCloseModalCflow" ).trigger( "click" );
                 
@@ -1214,6 +1223,7 @@ echo form_dropdown('kurs', $data, '',
 		resetForm();
 		readyToStart();
 		tglTransStart();
+        $('#id_body_data').empty();
 	});
 	$( "#id_idAdvance" ).focusout(function() {
 		var idAdv	= $(this).val();
@@ -1310,12 +1320,14 @@ echo form_dropdown('kurs', $data, '',
             getDescKurs(idKurs);   
         }
 	});
-    var i =0;
-    $('#idTxtTempLoop').val(i);
-    $('#id_btnAddPerk').click(function(){
+    
+    $('#id_btnAddCpa').click(function(){
+        var i = $('#idTxtTempLoop').val();
         if($('#id_kodePerk').val() =='' && $('#id_kodeCflow').text() == ''){
             alert("Akun GL tidak boleh kosong.");
         }else{
+            var i = parseInt($('#idTxtTempLoop').val());
+            
             i=i+1;
             var kodePerk        = $('#id_kodePerk').val();
             var kodeCflow       = $('#id_kodeCflow').val();
@@ -1323,33 +1335,78 @@ echo form_dropdown('kurs', $data, '',
             var jumlah          = $('#id_jumlahCPA').val();
 
 
-            tr = '<tr class="listdata" id="listdata'+i+'">';
-            tr+='<td><input type="text" class="form-control input-sm" name="tempKodePerk'+i+'" readonly="true" value="'+kodePerk+'"></td>';
-            tr+='<td><input type="text" class="form-control input-sm" name="tempNamaPerk'+i+'" readonly="true" value="'+kodeCflow+'" ></td>';
-            tr+='<td><input type="text" class="form-control input-sm" id="tempUraian'+i+'" name="tempUraian'+i+'" value="'+ket+'"></td>';
-            tr+='<td><input type="text" class="form-control nomor input-sm" id="tempJumlah'+i+'" name="tempJumlah'+i+'" value="'+jumlah+'"></td>';
-            tr+='<td><a href="#" class="btn yellow btn-sm"><i class="fa fa-edit"></i></a>';
-            tr+='<a href="#" class="btn red btn-sm" id="idBtnRemTR'+i+'"><i class="fa fa-trash-o"></i></a></td>';
+            tr = '<tr class="listdata" id="tr'+i+'">';
+            tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodePerk'+i+'" name="tempKodePerk'+i+'" readonly="true" value="'+kodePerk+'"></td>';
+            tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodeCflow'+i+'" name="tempKodeCflow'+i+'" readonly="true" value="'+kodeCflow+'" ></td>';
+            tr+='<td><input type="text" class="form-control input-sm" id="id_tempKet'+i+'" name="tempKet'+i+'" readonly="true" value="'+ket+'"></td>';
+            tr+='<td><input type="text" class="form-control nomor input-sm" id="id_tempJumlah'+i+'" name="tempJumlah'+i+'" readonly="true" value="'+jumlah+'"></td>';
             tr+= '</tr>';
 
 
-            saldoDebet          = parseFloat(CleanNumber(jumlah));
+            jumlahP          = parseFloat(CleanNumber(jumlah));
            
-            var totDebet        = parseFloat(CleanNumber($('#idTotalCPA').val()));
+            var totalP        = parseFloat(CleanNumber($('#idTotalCPA').val()));
            
-            var totalDebet      = totDebet+saldoDebet;
+            var total      = totalP+jumlahP;
            
-            $('#idTotalCPA').val(number_format(totalDebet,2));
+            $('#idTotalCPA').val(number_format(total,2));
 
             $('#id_body_data').append(tr);
             $('#idTxtTempLoop').val(i);
-            //kosongkan();
+            kosongCPA();
 
             /*$('#idBtnRemTR').click(function(){
                 //$('#listdata').detach();
                 alert("x");
             });?*/
         }
+    });
+    
+    $("#id_tabelPerkCflow").on('click', 'tbody tr', function () {
+        var kodePerk    = $(this).find("td input").eq(0).val();
+        var kodeCflow   = $(this).find("td input").eq(1).val();
+        var ket         = $(this).find("td input").eq(2).val();
+        var jumlah      = $(this).find("td input").eq(3).val();
+        $('#id_kodePerk').val(kodePerk);
+        $('#id_kodeCflow').val(kodeCflow); 
+        $('#id_keteranganCPA').val(ket);
+        $('#id_jumlahCPA').val(jumlah);  
+        
+        var idTr = $(this).attr('id');
+        var noRow = idTr.replace('tr', '');
+        $('#idTempUbahCPA').val(noRow);   
+        //alert($(this).attr('id'));  
+                                   
+    });
+    function kosongCPA(){
+        $('.kosongCPA').val('');
+        $('.tkosongCPA').text('');
+        $('#id_jumlahCPA').val('0.00');
+    } 
+    $('#id_btnUpdateCpa').click(function(){
+        var noRow = $('#idTempUbahCPA').val();
+        var kodePerk    = $('#id_kodePerk').val();
+        var kodeCflow   = $('#id_kodeCflow').val(); 
+        var ket         = $('#id_keteranganCPA').val();
+        var jumlah      = $('#id_jumlahCPA').val();
+        
+        $('#id_tempKodePerk'+noRow).val(kodePerk);
+        $('#id_tempKodeCflow'+noRow).val(kodeCflow);
+        $('#id_tempKet'+noRow).val(ket);
+        $('#id_tempJumlah'+noRow).val(jumlah);
+        kosongCPA();
+    });
+    $('#id_btnRemoveCpa').click(function(){
+        var noRow = $('#idTempUbahCPA').val();
+        $('#tr'+noRow).remove();
+        var i = $('#idTxtTempLoop').val();
+        i =parseInt(i);
+        i = i-1;
+        $('#idTxtTempLoop').val(i);
+        kosongCPA();
+    });
+    $('#id_btnBatalCpa').click(function(){
+        kosongCPA();
     });
 	function cetak(){
 		//window.location.href = 'http://www.google.com';
@@ -1454,6 +1511,7 @@ echo form_dropdown('kurs', $data, '',
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
+                $('#id_body_data').empty();
 				readyToStart();
 				startCheckBox()
 				UIToastr.init(data.tipePesan,data.pesan);

@@ -93,6 +93,18 @@ class Master_advance_m extends CI_Model {
 		}
 	
 	}
+    function insertCpa($data){
+        $this->db->trans_begin();
+		$model = $this->db->insert('cpa', $data);
+		if ($this->db->trans_status() === FALSE){
+			$this->db->trans_rollback();
+			return false;
+		}
+		else{
+			$this->db->trans_commit();
+			return true;
+		}
+    }
 	function updateAdv($data,$advId){
 		$this->db->trans_begin();
 		$query1 = $this->db->where('id_advance', $advId);

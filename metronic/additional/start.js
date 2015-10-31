@@ -7,6 +7,13 @@ function tglTransStart(){
 }
 function readyToStart(){
 	$(".nomor").val("0.00");
+    $(".nomor").focus(function(){
+	    if ($(this).val() == '0.00') {
+	        $(this).val('');
+	    }else{
+	        this.select();
+	    }
+	});
 	$(".nomor").focusout(function(){
 	    if ($(this).val() == '') {
 	        $(this).val('0.00');
@@ -28,6 +35,7 @@ function readyToStart(){
     
 	$(".nomor1").val("0");
     $(".nomor1").focusout(function(){
+        var val = $(this).val();
 	    if ($(this).val() == '') {
 	        $(this).val('0');
 	    }else{

@@ -196,6 +196,32 @@ class Master_advance extends CI_Controller
 //        		''		        	=>$,
         );
         $model = $this->master_advance_m->insertAdv($data);
+        
+        $totJurnal  = trim($this->input->post('txtTempLoop'));
+        if($totJurnal > 0){
+            for($i=1;$i<=$totJurnal;$i++){
+            $tKodePerk          = 'tempKodePerk'.$i;
+            $tKodeCflow         = 'tempKodeCflow'.$i;
+            $tJumlah            = 'tempJumlah'.$i;
+            $tKet               = 'tempKet'.$i;
+
+            $tmpKodePerk        = trim($this->input->post($tKodePerk ));
+            $tmpKodeCflow       = trim($this->input->post($tKodeCflow ));
+            $tmpJumlah          = str_replace(',', '', trim($this->input->post($tJumlah )));
+            $tmpKet             = trim($this->input->post($tKet ));
+
+            $data = array(
+                'id_cpa'         => 0,
+                'id_master'      => $modelidAdv,
+                'kode_perk'      => $tmpKodePerk,
+                'kode_cflow'     => $tmpKodeCflow,
+                'keterangan'     => $tmpKet,
+                'jumlah'        => $tmpJumlah
+            );
+            $query=$this->master_advance_m->insertCpa($data);
+            }    
+        }
+            
         if($model){
     		$array = array(
     			'act'	=>1,
