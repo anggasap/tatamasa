@@ -69,6 +69,7 @@ function btnStart(){
 	$('#id_btnUbah').attr("disabled",true);
     $('#id_btnHapus').attr("disabled",true);
 }
+
 function ajaxModal(){
 	$(document).ajaxStart(function () {
         $('.modal_json').fadeIn('fast');

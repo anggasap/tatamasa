@@ -321,6 +321,7 @@ echo form_dropdown('kurs', $data, '',
                                     <div class="form-group">
                                         <input type="text" id="idTxtTempLoop" name="txtTempLoop" class="form-control nomor1 ">
                                         <input type="text" id="idTempUbahCPA" name="txtTempUbahCPA" class="form-control nomor1 ">
+                                        <input type="text" id="idTempJumlahCPA" name="txtTempJumlahCPA" class="form-control nomor ">
                                         <a href="javascript:;" class="btn blue btn-sm" id="id_btnAddCpa">
                                             <i class="fa fa-plus"></i>
 			                             </a>
@@ -1205,6 +1206,7 @@ echo form_dropdown('kurs', $data, '',
     btnStart();
     readyToStart();
     tglTransStart();
+    btnCpaStart();
 	$("#id_namaKyw").focus();
     	
 	$( "#id_btnSimpan" ).click(function() {
@@ -1223,6 +1225,7 @@ echo form_dropdown('kurs', $data, '',
 		resetForm();
 		readyToStart();
 		tglTransStart();
+        btnCpaStart();
         $('#id_body_data').empty();
 	});
 	$( "#id_idAdvance" ).focusout(function() {
@@ -1320,7 +1323,11 @@ echo form_dropdown('kurs', $data, '',
             getDescKurs(idKurs);   
         }
 	});
-    
+    function btnCpaStart(){
+	   $('#id_btnAddCpa').attr("disabled",false);
+	   $('#id_btnUpdateCpa').attr("disabled",true);
+       $('#id_btnRemoveCpa').attr("disabled",true);
+    }
     $('#id_btnAddCpa').click(function(){
         var i = $('#idTxtTempLoop').val();
         if($('#id_kodePerk').val() =='' && $('#id_kodeCflow').text() == ''){
@@ -1334,31 +1341,19 @@ echo form_dropdown('kurs', $data, '',
             var ket             = $('#id_keteranganCPA').val().trim();
             var jumlah          = $('#id_jumlahCPA').val();
 
-
-            tr = '<tr class="listdata" id="tr'+i+'">';
+            tr ='<tr class="listdata" id="tr'+i+'">';
             tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodePerk'+i+'" name="tempKodePerk'+i+'" readonly="true" value="'+kodePerk+'"></td>';
             tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodeCflow'+i+'" name="tempKodeCflow'+i+'" readonly="true" value="'+kodeCflow+'" ></td>';
             tr+='<td><input type="text" class="form-control input-sm" id="id_tempKet'+i+'" name="tempKet'+i+'" readonly="true" value="'+ket+'"></td>';
             tr+='<td><input type="text" class="form-control nomor input-sm" id="id_tempJumlah'+i+'" name="tempJumlah'+i+'" readonly="true" value="'+jumlah+'"></td>';
             tr+= '</tr>';
-
-
             jumlahP          = parseFloat(CleanNumber(jumlah));
-           
             var totalP        = parseFloat(CleanNumber($('#idTotalCPA').val()));
-           
             var total      = totalP+jumlahP;
-           
             $('#idTotalCPA').val(number_format(total,2));
-
             $('#id_body_data').append(tr);
             $('#idTxtTempLoop').val(i);
             kosongCPA();
-
-            /*$('#idBtnRemTR').click(function(){
-                //$('#listdata').detach();
-                alert("x");
-            });?*/
         }
     });
     
@@ -1375,7 +1370,12 @@ echo form_dropdown('kurs', $data, '',
         var idTr = $(this).attr('id');
         var noRow = idTr.replace('tr', '');
         $('#idTempUbahCPA').val(noRow);   
-        //alert($(this).attr('id'));  
+        
+        $('#idTempJumlahCPA').val(jumlah);
+        
+        $('#id_btnAddCpa').attr("disabled",true);
+	    $('#id_btnUpdateCpa').attr("disabled",false);
+        $('#id_btnRemoveCpa').attr("disabled",false); 
                                    
     });
     function kosongCPA(){
@@ -1390,11 +1390,18 @@ echo form_dropdown('kurs', $data, '',
         var ket         = $('#id_keteranganCPA').val();
         var jumlah      = $('#id_jumlahCPA').val();
         
+        var totalP      = parseFloat(CleanNumber($('#idTotalCPA').val()));
+        var jumlahOld   = parseFloat(CleanNumber($('#idTempJumlahCPA').val()));
+        var jumlahNew   = parseFloat(CleanNumber(jumlah));
+        totalP          = totalP - jumlahOld + jumlahNew;
+        
         $('#id_tempKodePerk'+noRow).val(kodePerk);
         $('#id_tempKodeCflow'+noRow).val(kodeCflow);
         $('#id_tempKet'+noRow).val(ket);
         $('#id_tempJumlah'+noRow).val(jumlah);
+        $('#idTotalCPA').val(number_format(totalP,2));
         kosongCPA();
+        btnCpaStart();
     });
     $('#id_btnRemoveCpa').click(function(){
         var noRow = $('#idTempUbahCPA').val();
@@ -1403,10 +1410,18 @@ echo form_dropdown('kurs', $data, '',
         i =parseInt(i);
         i = i-1;
         $('#idTxtTempLoop').val(i);
+        
+        var totalP      = parseFloat(CleanNumber($('#idTotalCPA').val()));
+        var jumlahOld   = parseFloat(CleanNumber($('#idTempJumlahCPA').val()));
+        totalP          = totalP - jumlahOld ;
+        $('#idTotalCPA').val(number_format(totalP,2));
+        
         kosongCPA();
+        btnCpaStart();
     });
     $('#id_btnBatalCpa').click(function(){
         kosongCPA();
+        btnCpaStart();
     });
 	function cetak(){
 		//window.location.href = 'http://www.google.com';
