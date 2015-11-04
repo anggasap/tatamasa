@@ -11,8 +11,8 @@ class Budgetc_cflow_m extends CI_Model {
 		return $query->result();
 	
 	}
-	public function cekTahun($tahun){
-		$sql="SELECT tahun from budget_cflow where tahun ='$tahun'";
+	public function cekTahun($tahun,$id_proyek){
+		$sql="SELECT tahun from budget_cflow where tahun ='$tahun' and id_proyek = '$id_proyek'";
 		$query=$this->db->query($sql);
 		//$hasil = $query->result();
 		$jml = $query->num_rows();

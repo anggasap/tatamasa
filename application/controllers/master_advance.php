@@ -138,6 +138,7 @@ class Master_advance extends CI_Controller
 						'app_hd_ket' => $row->app_hd_ket,
 						'app_gm_ket' => $row->app_gm_ket */
 						//'' => $row->
+                        
 						
 				);
 		}else{
@@ -145,6 +146,21 @@ class Master_advance extends CI_Controller
 		}
 	
 		$this->output->set_output(json_encode($array));
+	}
+    function getDescCpa(){
+		$this->CI =& get_instance();
+		$idAdv = $this->input->post ( 'idAdv', TRUE );
+		$crows = $this->master_advance_m->getCDescCpa( $idAdv );
+        if($crows<=0){
+            $array=array('baris'=>0);
+            $rows['data_cpa'] = $array;
+            $this->output->set_output(json_encode($rows));
+        }else{
+            $rows = $this->master_advance_m->getDescCpa( $idAdv );    
+            $this->output->set_output(json_encode($rows));				
+        }
+        
+		
 	}
 	
     function simpan(){
@@ -285,6 +301,36 @@ class Master_advance extends CI_Controller
     			//        		''		        	=>$,
     	);
     	$model = $this->master_advance_m->updateAdv($data,$idAdv);
+        
+        $totJurnal  = trim($this->input->post('txtTempLoop'));
+        if($totJurnal > 0){
+            $query=$this->master_advance_m->deleteCpa($idAdv);
+            
+            for($i=1;$i<=$totJurnal;$i++){
+                $tKodePerk          = 'tempKodePerk'.$i;
+                $tKodeCflow         = 'tempKodeCflow'.$i;
+                $tJumlah            = 'tempJumlah'.$i;
+                $tKet               = 'tempKet'.$i;
+            
+                $tmpKodePerk        = trim($this->input->post($tKodePerk ));
+                $tmpKodeCflow       = trim($this->input->post($tKodeCflow ));
+                $tmpJumlah          = str_replace(',', '', trim($this->input->post($tJumlah )));
+                $tmpKet             = trim($this->input->post($tKet ));
+
+                $data = array(
+                    'id_cpa'         => 0,
+                    'id_master'      => $idAdv,
+                    'kode_perk'      => $tmpKodePerk,
+                    'kode_cflow'     => $tmpKodeCflow,
+                    'keterangan'     => $tmpKet,
+                    'jumlah'        => $tmpJumlah
+                );
+                $query=$this->master_advance_m->insertCpa($data);
+            }   
+        }else{
+            $query=$this->master_advance_m->deleteCpa($idAdv);
+        }
+        
     	if($model){
     		$array = array(
     			'act'	=>1,
@@ -303,7 +349,14 @@ class Master_advance extends CI_Controller
     function hapus(){
     	$this->CI =& get_instance();
     	$idAdvance			= trim($this->input->post('idAdvance'));
+        $totJurnal  = trim($this->input->post('tempLoop'));
     	$model = $this->master_advance_m->deleteAdv( $idAdvance);
+        
+        
+        if($totJurnal > 0){
+            $query=$this->master_advance_m->deleteCpa($idAdvance);
+        }
+        
     	if($model){
     		$array = array(
     			'act'	=>1,

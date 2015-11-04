@@ -30,6 +30,7 @@ class Budgetc_perk extends CI_Controller
 		$data['menu_nama'] = $menuId[0]->menu_nama;
 		$this->auth->restrict ($data['menu_id']);
 		$this->auth->cek_menu ( $data['menu_id'] );
+        $data['proyek'] = $this->budgetc_perk_m->getProyek();
         //$data['dept'] = $this->master_advance_m->get_dept();
        
 		if(isset($_POST["btnSimpan"])){
@@ -50,14 +51,15 @@ class Budgetc_perk extends CI_Controller
 	
     function simpan(){
         $tahun			= trim($this->input->post('tahun'));
-        //$ket			= trim($this->input->post(''));
-        $cek_tahun		= $this->budgetc_perk_m->cekTahun($tahun);
+        $id_proyek		= trim($this->input->post('proyek'));
+        $cek_tahun		= $this->budgetc_perk_m->cekTahun($tahun,$id_proyek);
         if($cek_tahun == 0){
         	$get_kodeperk = $this->budgetc_perk_m->getKodePerk();
         	foreach ($get_kodeperk as $kodeperk){
         		$kodeperk = $kodeperk->kode_perk;
         		$data = array(
         				'tahun'		        =>$tahun,
+                        'id_proyek'         =>$id_proyek,
         				'kode_perk'		    =>$kodeperk,
         				'jan'				=>0,
         				'feb'				=>0,
@@ -70,7 +72,9 @@ class Budgetc_perk extends CI_Controller
         				'sep'				=>0,
         				'okt'				=>0,
         				'nov'				=>0,
-        				'des'				=>0
+        				'des'				=>0,
+                        'terpakai'          =>0,
+                        'saldo'              =>0
         		);
         		$model = $this->budgetc_perk_m->insertKodePerk($data);
         	}	

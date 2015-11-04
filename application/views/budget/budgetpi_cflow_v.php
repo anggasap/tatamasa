@@ -40,13 +40,22 @@
 										foreach($tahun as $row) : 
 												$data[$row['tahun']] = $row['tahun'];
 										endforeach; 
-										echo form_dropdown('tahun', $data,'','id="id_tahun" class="form-control select2me"');
+										echo form_dropdown('tahun', $data,'','id="id_tahun" class="form-control input-sm select2me"');
 									?>                                                   
                                 </div>
                                 
                             </div>
                             <!--end <div class="col-md-6"> 1 -->
                             <div class="col-md-4">
+                                <label>Proyek</label>
+                                    <?php
+                                        $data = array();
+                                        $data[''] = '';
+                                        foreach ($proyek as $row):
+                                            $data[$row['id_proyek']] = $row['nama_proyek'];
+                                        endforeach;
+                                        echo form_dropdown('proyek', $data, '','id="id_proyek" class="form-control select2me input-sm"');
+                                    ?>
                                 
                             </div>
                             <div class="col-md-4">

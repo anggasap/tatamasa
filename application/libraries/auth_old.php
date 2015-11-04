@@ -28,7 +28,6 @@ class Auth{
          $userdata = $result->row();
          $session_data = array(
             'id_user'   		=> $userdata->userid,
-			'id_kyw'   		=> $userdata->id_kyw,
             'namaInisial'      => $userdata->username,
 			'namaFull'      	=> $userdata->userfullname,
             'usergroup'     	=> $userdata->usergroup,
@@ -57,7 +56,6 @@ class Auth{
          		'metronicJS'  => '<script src="'.base_url('metronic/global/scripts/metronic.js').'"></script>',
          		'layoutJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/layout.js').'"></script>',
          		'demoJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/demo.js').'"></script>',
-				'select2JS'  => '<script src="'.base_url('metronic/global/plugins/select2/select2.min.js').'"></script>',
                 //'compPickersJS'  => '<script src="'.base_url('metronic/admin/pages/scripts/components-pickers.js').'"></script>'
          		
          		/* 'JS'  => '<script src="'.base_url('').'"></script>' */

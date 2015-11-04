@@ -12,8 +12,17 @@ class Budgetc_perk_m extends CI_Model {
 		return $query->result();
 	
 	}
-	public function cekTahun($tahun){
-		$sql="SELECT tahun from budget_perkiraan where tahun ='$tahun'";
+    public function getProyek() {
+		$rows 		=	array(); //will hold all results
+		$sql		=	"select * from master_proyek order by id_proyek asc ";
+		$query		=	$this->db->query($sql);
+		foreach($query->result_array() as $row){
+			$rows[] = $row; //add the fetched result to the result array;
+		}
+		return $rows; // returning rows, not row
+	}
+	public function cekTahun($tahun,$proyek){
+		$sql="SELECT tahun from budget_perkiraan where tahun ='$tahun' and id_proyek = '$proyek'";
 		$query=$this->db->query($sql);
 		//$hasil = $query->result();
 		$jml = $query->num_rows();

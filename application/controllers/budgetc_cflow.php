@@ -9,6 +9,8 @@ class Budgetc_cflow extends CI_Controller
 
 		$this->load->model('home_m');
 		$this->load->model('budgetc_cflow_m');
+        $this->load->model('budgetc_perk_m');
+        
 		session_start ();
 	}
 	public function index(){
@@ -30,6 +32,7 @@ class Budgetc_cflow extends CI_Controller
 		$data['menu_nama'] = $menuId[0]->menu_nama;
 		$this->auth->restrict ($data['menu_id']);
 		$this->auth->cek_menu ( $data['menu_id'] );
+        $data['proyek'] = $this->budgetc_perk_m->getProyek();
         //$data['dept'] = $this->master_advance_m->get_dept();
        
 		if(isset($_POST["btnSimpan"])){
@@ -50,13 +53,16 @@ class Budgetc_cflow extends CI_Controller
 	
     function simpan(){
         $tahun			= trim($this->input->post('tahun'));
-        $cek_tahun		= $this->budgetc_cflow_m->cekTahun($tahun);
+        $id_proyek		= trim($this->input->post('proyek'));
+        $cek_tahun		= $this->budgetc_cflow_m->cekTahun($tahun,$id_proyek);
+        
         if($cek_tahun == 0){
         	$get_kodecflow = $this->budgetc_cflow_m->getKodeCflow();
         	foreach ($get_kodecflow as $kodecflow){
         		$kode_cflow = $kodecflow->kode_cflow;
         		$data = array(
         				'tahun'		        =>$tahun,
+                        'id_proyek'         =>$id_proyek,
         				'kode_cflow'		    =>$kode_cflow,
         				'jan'				=>0,
         				'feb'				=>0,
@@ -69,7 +75,9 @@ class Budgetc_cflow extends CI_Controller
         				'sep'				=>0,
         				'okt'				=>0,
         				'nov'				=>0,
-        				'des'				=>0
+        				'des'				=>0,
+                        'terpakai'          =>0,
+                        'saldo'              =>0
         		);
         		$model = $this->budgetc_cflow_m->insertKodeCflow($data);
         	}	

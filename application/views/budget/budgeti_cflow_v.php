@@ -12,7 +12,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Data Budget Cash Flow Tahun <?php echo $tahun; ?></span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Data Budget Cash Flow Tahun <?php echo $tahun; ?> Proyek <?php echo $nama_proyek; ?></span>
                 </div>
                 <div class="actions">
 					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
@@ -47,6 +47,7 @@
                 <div class="row">
                 	<div class="col-md-12">
                     	<div class="form-body">
+                            <input type="text" class="hidden" id= "id_proyek" value="<?php echo $id_proyek; ?>"/>
                         	<table class="table table-striped table-bordered table-hover text_kanan" id="idTabelAdv">
                             	<thead>
                                 	<tr>
@@ -145,9 +146,16 @@
                                         	<?php echo number_format($row->des,2); ?>
                                         </td>
                                         <td>
-                                        	<a class="edit" href="javascript:;">
-									Edit </a>
-                                        	
+                                        	<?php
+                                             if($row->type=='D'){
+                                            ?>
+                                        	<a class="edit" href="javascript:;">Edit </a>
+                                        	<?php
+                                            }else{
+                                            ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php
@@ -266,6 +274,7 @@
                 	bulan.push(nominal);
                 	
                 } */
+                var id_proyek = $('#id_proyek').val();
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 var kode_cflow = jqInputs[0].value.trim();
                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);// nama cflow
@@ -300,7 +309,7 @@
         			type:"POST",
         			dataType: "json",
         			url:"<?php echo base_url(); ?>budgeti_cflow/ubah",
-        			data:{kode_cflow:kode_cflow,
+        			data:{kode_cflow:kode_cflow, id_proyek : id_proyek,
 						  jan : jan, feb :feb, mar:mar, apr:apr, mei:mei, jun:jun, jul:jul, agt:agt, sep:sep, okt:okt, nov:nov, des:des
             			},
         			success:function (data) {

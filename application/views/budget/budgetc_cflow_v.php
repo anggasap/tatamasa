@@ -35,13 +35,22 @@
 								
                                 <div class="form-group">
                                     <label>Tahun budget</label>
-									<input id="id_tahun" required="required" class="form-control"
+									<input id="id_tahun" required="required" data-date-format="yyyy" class="form-control date-picker input-sm" 
                                                    type="text" name="tahun" placeholder="yyyy"/>
                                 </div>
                                 
                             </div>
                             <!--end <div class="col-md-6"> 1 -->
                             <div class="col-md-4">
+                                <label>Proyek</label>
+                                    <?php
+                                        $data = array();
+                                        $data[''] = '';
+                                        foreach ($proyek as $row):
+                                            $data[$row['id_proyek']] = $row['nama_proyek'];
+                                        endforeach;
+                                        echo form_dropdown('proyek', $data, '','id="id_proyek" class="form-control input-sm select2me"');
+                                    ?>
                                 
                             </div>
                             <div class="col-md-4">
@@ -115,6 +124,9 @@
 <?php echo  $this->session->userdata('layoutJS'); ?>
 <?php echo  $this->session->userdata('demoJS'); ?>
 <script src="<?php echo base_url('metronic/additional/start.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('metronic/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('metronic/admin/pages/scripts/components-pickers.js'); ?>" type="text/javascript"></script>
+
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core components
@@ -142,7 +154,11 @@
 		btnStart();
 		resetForm();
 	});
-	
+	$("#id_tahun").datepicker( {
+        format: " yyyy", // Notice the Extra space at the beginning
+        viewMode: "years", 
+        minViewMode: "years"
+    });
 	function ajaxSubmit(){
 		ajaxModal();
 		$.ajax({

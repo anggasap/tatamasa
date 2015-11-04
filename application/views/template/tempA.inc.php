@@ -433,7 +433,7 @@
 	<!-- END HEADER INNER -->
 </div>
 <!-- END HEADER -->
-<div class="clearfix">
+<div class="clearfix modal_json">
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container">

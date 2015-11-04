@@ -58,18 +58,7 @@ class Sec_user_m extends CI_Model {
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
-	function getAllKaryawan(){
-		$sql="SELECT * from master_karyawan";
-		$query=$this->db->query($sql);
-		return $query->result();
-	}
-	function getNamaKaryawan($id){
-		$this->db->select('nama_kyw' );
-        $this->db->from('master_karyawan');
-		$this->db->where('id_kyw',$id);
-        $query = $this->db->get();
-        return $query->row()->nama_kyw;
-	}
+	
 }
 
 /* End of file sec_menu_user_m.php */

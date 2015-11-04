@@ -51,17 +51,6 @@
                                     </span>
                                     </div>
                                 </div>
-								<div class="form-group">
-                                    <label>Karyawan</label>
-                                    <?php
-										$data = array();
-										$data[''] ='';
-										foreach($karyawan as $k) : 
-												$data[$k->id_kyw] = $k->nama_kyw;
-										endforeach; 
-										echo form_dropdown('karyawan', $data,'','id="id_karyawan" class="form-control"');
-									?>
-                                </div>
                                 <div class="form-group">
                                     <label>User name</label>
 
@@ -71,6 +60,15 @@
                                                    type="text" name="userName"/>
                                         </div>
                                     
+                                </div>
+                                <div class="form-group">
+                                    <label>Full user name</label>
+
+                                    <div class="input-icon">
+                                        <i class="fa fa-list"></i>
+                                        <input type="text" class="form-control" placeholder="" name="userNameFull"
+                                               id="id_userNameFull">
+                                    </div>
                                 </div>
                                 
                             </div>
@@ -359,7 +357,7 @@
                 var userGroup = $(this).find("td").eq(4).html();
                 $('#id_userId').val(userId);
                 $('#id_userName').val(userName);
-                $('#id_karyawan').val(id_kyw);
+                $('#id_userNameFull').val(userFullName);
                 $('#id_kataKunci').val(passwd);
                 $('#id_confKataKunci').val(passwd);
                 $('#id_groupUser').val(userGroup);
@@ -420,7 +418,6 @@
 	
 	function ajaxSubmitUser(){
 		ajaxModal();
-		console.log('aa'); 
 		$.ajax({
 			type:"POST",
 			dataType: "json",
@@ -428,7 +425,6 @@
 			data:dataString,
 	
 			success:function (data) {
-				console.log(data);
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
 				$( "#event_result" ).append( data.notif );
@@ -478,7 +474,6 @@
         if(aksiBtn == '1'){
         	var r = confirm('Anda yakin menyimpan data ini?');
 			 if (r== true){
-				
 				ajaxSubmitUser();
 			 }else{//if(r)
 				return false;

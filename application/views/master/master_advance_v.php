@@ -319,9 +319,9 @@ echo form_dropdown('kurs', $data, '',
 
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" id="idTxtTempLoop" name="txtTempLoop" class="form-control nomor1 ">
-                                        <input type="text" id="idTempUbahCPA" name="txtTempUbahCPA" class="form-control nomor1 ">
-                                        <input type="text" id="idTempJumlahCPA" name="txtTempJumlahCPA" class="form-control nomor ">
+                                        <input type="text" id="idTxtTempLoop" name="txtTempLoop" class="form-control nomor1 hidden">
+                                        <input type="text" id="idTempUbahCPA" name="txtTempUbahCPA" class="form-control nomor1 hidden">
+                                        <input type="text" id="idTempJumlahCPA" name="txtTempJumlahCPA" class="form-control nomor hidden">
                                         <a href="javascript:;" class="btn blue btn-sm" id="id_btnAddCpa">
                                             <i class="fa fa-plus"></i>
 			                             </a>
@@ -790,7 +790,6 @@ echo form_dropdown('kurs', $data, '',
 <?php echo $this->session->userdata('demoJS'); ?>
 <?php //echo  $this->session->userdata('compPickersJS'); ?>
 <script src="<?php echo base_url('metronic/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>" type="text/javascript"></script>
-
 <script src="<?php echo base_url('metronic/admin/pages/scripts/components-pickers.js'); ?>" type="text/javascript"></script>
 
 
@@ -996,6 +995,7 @@ echo form_dropdown('kurs', $data, '',
                 $('#id_btnUbah').attr("disabled",false);
                 $('#id_btnHapus').attr("disabled",false);
                 $('#id_userId').focus(); 
+                getDescCpa(idAdv);
 
             }); 
 
@@ -1497,6 +1497,44 @@ echo form_dropdown('kurs', $data, '',
 			}, "json");
 		}//if kd<>''
 	}
+    function getDescCpa(idAdv){
+		ajaxModal();
+		if (idAdv != '') {
+			$.post("<?php echo site_url('/master_advance/getDescCpa'); ?>",
+			{
+				'idAdv': idAdv
+			},function (data) {
+				if (data.data_cpa.length > 0) {
+					$('#idTxtTempLoop').val(data.data_cpa.length);
+                    for(i=0;i<data.data_cpa.length;i++){
+                        var x = i+1;
+                        //var idCpa           = data.data_cpa[i].id_cpa;
+                        var kodePerk        = data.data_cpa[i].kode_perk;
+                        var kodeCflow       = data.data_cpa[i].kode_cflow;
+                        var ket             = data.data_cpa[i].keterangan;
+                        var jumlah          = data.data_cpa[i].jumlah;
+                        
+                        tr ='<tr class="listdata" id="tr'+x+'">';
+                        tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodePerk'+x+'" name="tempKodePerk'+x+'" readonly="true" value="'+kodePerk+'"></td>';
+                        tr+='<td><input type="text" class="form-control input-sm" id="id_tempKodeCflow'+x+'" name="tempKodeCflow'+x+'" readonly="true" value="'+kodeCflow+'" ></td>';
+                        tr+='<td><input type="text" class="form-control input-sm" id="id_tempKet'+x+'" name="tempKet'+x+'" readonly="true" value="'+ket+'"></td>';
+                        tr+='<td><input type="text" class="form-control nomor input-sm" id="id_tempJumlah'+x+'" name="tempJumlah'+x+'" readonly="true" value="'+number_format(jumlah,2)+'"></td>';
+                        tr+= '</tr>';
+                        jumlahP          = parseFloat(CleanNumber(jumlah));
+                        var totalP        = parseFloat(CleanNumber($('#idTotalCPA').val()));
+                        var total      = totalP+jumlahP;
+                        $('#idTotalCPA').val(number_format(total,2));
+                        $('#id_body_data').append(tr);
+                    }
+					/* 
+					$('#').val(data.); */					                    
+				}else{
+					//alert('Data tidak ditemukan!');
+					//$('#id_btnBatal').trigger('click');
+				}
+			}, "json");
+		}//if kd<>''
+	}
 	function getDescKurs(idKurs){
 		ajaxModal();
 		if (idKurs != '') {
@@ -1556,11 +1594,13 @@ echo form_dropdown('kurs', $data, '',
 		ajaxModal();
 		var idAdvance	= $('#id_idAdvance').val();
 		idAdvance		= idAdvance.trim();
+        var tempLoop	= $('#idTxtTempLoop').val();
+		tempLoop		= tempLoop.trim();
 		$.ajax({
 			type:"POST",
 			dataType: "json",
 			url:"<?php echo base_url(); ?>master_advance/hapus",
-			data:{idAdvance : idAdvance},
+			data:{idAdvance : idAdvance, tempLoop : tempLoop},
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');

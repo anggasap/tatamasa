@@ -61,6 +61,41 @@ class Master_advance_m extends CI_Model {
 			return false;
 		}	
 	}
+    public function getCDescCpa($idAdv)
+	{
+		$this->db->select ( 'id_cpa,id_master,kode_perk,kode_cflow,keterangan,jumlah' );
+		$this->db->from('cpa');
+		$this->db->where ( 'id_master', $idAdv );
+//		
+		$query = $this->db->get ();
+		return $query->num_rows();	
+	}
+    public function getDescCpa($idAdv)
+	{
+		$this->db->select ( 'id_cpa,id_master,kode_perk,kode_cflow,keterangan,jumlah' );
+		$this->db->from('cpa');
+		$this->db->where ( 'id_master', $idAdv );
+//		$this->db->where ( 'T.STATUS_AKTIF <>', 3 );
+		$query = $this->db->get ();
+		
+        $rows['data_cpa'] = $query->result();
+		return $rows;
+        	
+	}
+    function deleteCpa($IdAdv){
+		$this->db->trans_begin();
+		$query1	=	$this->db->where('id_master',$IdAdv);
+		$query2	=   $this->db->delete('cpa');
+		if ($this->db->trans_status() === FALSE){
+			$this->db->trans_rollback();
+			return false;
+		}
+		else{
+			$this->db->trans_commit();
+			return true;
+		}
+	}
+    
 	public function getIdAdv($bulan,$tahun){
 		$sql= "select id_advance from master_advance where MONTH(tgl_trans)='$bulan' and YEAR(tgl_trans)='$tahun'";
 		$query = $this->db->query($sql);

@@ -12,7 +12,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Jurnal Transaksi Advance</span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Perintah Pembayaran</span>
                 </div>
                 <div class="actions">
 					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
@@ -47,12 +47,11 @@
                                     <label>No Jurnal Advance </label>
                                     <div class="input-group">
                                         <div class="input-icon">
-                                            <i class="fa fa-list fa-fw"></i>
-                                            <input id="id_idJAdvance" required="required" class="form-control"
+                                            <input id="id_idJAdvance" required="required" class="form-control input-sm"
                                                    type="text" name="idJAdvance" readonly/>
                                         </div>
                                     <span class="input-group-btn">
-                                        <a href="#" class="btn btn-success" data-target="#idDivTabelJAdv"
+                                        <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelJAdv"
                                            id="id_btnModal" data-toggle="modal">
                                             <i class="fa fa-search fa-fw"/></i>
                                             
@@ -64,12 +63,11 @@
                                     <label>No Advance </label>
                                     <div class="input-group">
                                         <div class="input-icon">
-                                            <i class="fa fa-list fa-fw"></i>
-                                            <input id="id_idAdvance" required="required" class="form-control"
+                                            <input id="id_idAdvance" required="required" class="form-control input-sm"
                                                    type="text" name="idAdvance" readonly/>
                                         </div>
                                     <span class="input-group-btn">
-                                        <a href="#" class="btn btn-success" data-target="#idDivTabelAdv"
+                                        <a href="#" class="btn btn-success btn-sm" data-target="#idDivTabelAdv"
                                            id="id_btnModal" data-toggle="modal">
                                             <i class="fa fa-search fa-fw"/></i>
                                             
@@ -81,25 +79,25 @@
                                 <input id="id_kywId" required="required" class="form-control hidden"
                                                    type="text" name="kywId" readonly/>
                                     <label>Nama karyawan (Requester) </label>
-                                            <input id="id_namaKyw" required="required" class="form-control"
+                                            <input id="id_namaKyw" required="required" class="form-control input-sm"
                                                    type="text" name="namaKyw" readonly/>
                                         
                                 </div>
                                 <div class="form-group">
                                     <label>Departemen/Bagian</label>
-									<input id="id_deptKyw" required="required" class="form-control"
+									<input id="id_deptKyw" required="required" class="form-control input-sm"
                                                    type="text" name="deptKyw" readonly/>
                                 </div>
                                 <div class="form-group">
                                 	<div class="row">
                                 		<div class="col-md-6">
                                 		<label>Tanggal Jurnal</label>
-                                			<input id="id_tgltrans" required="required" class="form-control "
+                                			<input id="id_tgltrans" required="required" class="form-control input-sm"
                                                    type="text" name="tglTrans" readonly/>
                                 		</div>
                                 		<div class="col-md-6">
                                 			<label>Tanggal Advance</label>
-                                            <input id="id_tglAdv" required="required" class="form-control"
+                                            <input id="id_tglAdv" required="required" class="form-control input-sm"
                                                    type="text" name="tglAdv" readonly/>
                                 		</div>
                             			
@@ -108,7 +106,7 @@
                                 
                                 <div class="form-group">
                                     <label>Dibayarkan ke</label>
-                                            <input id="id_payTo" required="required" class="form-control"
+                                            <input id="id_payTo" required="required" class="form-control input-sm"
                                                    type="text" name="payTo" />
                                 </div>
                                 
